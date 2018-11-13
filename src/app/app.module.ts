@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoginModule } from './containers/login/login.module';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -26,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
-import { LoginComponent } from '@appContainers/login/login.component';
+//import { LoginComponent } from '@appContainers/login/login.component';
 import { HeroesComponent } from '@appContainers/heroes/heroes.component';
 import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
 import { MessagesComponent } from '@appComponents/messages/messages.component';
@@ -47,7 +48,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    //LoginModule,
+    LoginModule,
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
     StoreRouterConnectingModule.forRoot({
@@ -67,7 +68,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent,
+    //LoginComponent,
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,

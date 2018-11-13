@@ -30,6 +30,12 @@ export class I18nService {
     translateService.setTranslation('fr-FR', frFR);
   }
 
+
+  get getTranslateService(){
+    return this.translateService;
+  }
+
+
   /**
    * Initializes i18n for the application.
    * Loads language from local storage if present, or sets default language.
@@ -40,6 +46,7 @@ export class I18nService {
     this.defaultLanguage = defaultLanguage;
     this.supportedLanguages = supportedLanguages;
     this.language = '';
+    this.translateService.use(defaultLanguage);
 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       localStorage.setItem(languageKey, event.lang);

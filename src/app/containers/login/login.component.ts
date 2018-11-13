@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 //import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { I18nService } from '../../core/i18n.service';
+import {TranslateService} from '@ngx-translate/core';
 
 //const log = new Logger('Login');
 
@@ -24,13 +25,16 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private i18nService: I18nService,
+    private i18nService: I18nService
     //private authenticationService: AuthenticationService
   ) {
+    //this.translate = this.i18nService.getTranslateService();
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    //this.i18nService.init('en', []);
+  }
 
   login() {
     this.isLoading = true;
