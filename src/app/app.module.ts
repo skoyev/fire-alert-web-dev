@@ -36,6 +36,7 @@ import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.comp
 import { HeroService } from '@appServices/hero.service';
 import { MessageService } from '@appServices/message.service';
 import { I18nService } from './core/i18n.service';
+import { AuthenticationService } from './core/authentication/authentication.service';
 
 import * as fromStore from '@appStore/index';
 import { CustomRouterStateSerializer } from '@appStore/router';
@@ -78,6 +79,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     HeroService,
     MessageService,
     I18nService,
+    AuthenticationService,
     {
       provide: RouterStateSerializer,
       useClass: CustomRouterStateSerializer

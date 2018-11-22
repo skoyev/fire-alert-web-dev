@@ -5,10 +5,12 @@ import { finalize } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 //import { Logger, I18nService, AuthenticationService } from '@app/core';
+import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { Logger } from '../../core/logger.service';
 import { I18nService } from '../../core/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
 
-//const log = new Logger('Login');
+const log = new Logger('Login');
 
 @Component({
   selector: 'app-login',
@@ -25,8 +27,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private i18nService: I18nService
-    //private authenticationService: AuthenticationService
+    private i18nService: I18nService,
+    private authenticationService: AuthenticationService
   ) {
     //this.translate = this.i18nService.getTranslateService();
     this.createForm();
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLoading = true;
-    /*
+    
     this.authenticationService
       .login(this.loginForm.value)
       .pipe(
@@ -51,15 +53,14 @@ export class LoginComponent implements OnInit {
         credentials => {
           log.debug(`${credentials.username} successfully logged in`);
           this.route.queryParams.subscribe(params =>
-            this.router.navigate([params.redirect || '/'], { replaceUrl: true })
+            this.router.navigate([params.redirect || '/dashboard'], { replaceUrl: true })
           );
         },
         error => {
           log.debug(`Login error: ${error}`);
           this.error = error;
         }
-      );
-      */
+      );      
   }
 
 setLanguage(language: string) {
