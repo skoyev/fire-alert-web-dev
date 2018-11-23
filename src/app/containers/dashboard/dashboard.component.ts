@@ -8,6 +8,9 @@ import { HeroService } from '@appServices/hero.service';
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 
+import { HeaderComponent } from '@appShared/header/header.component';
+import { FooterComponent } from '@appShared/footer/footer.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,10 +19,15 @@ import * as fromReducers from '@appStore/reducers';
 })
 export class DashboardComponent implements OnInit {
   topHeroes$: Observable<Hero[]>;
+  showSidebar: boolean = false;
 
   constructor(private store: Store<fromReducers.hero.State>) {}
 
   ngOnInit() {
     this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
+  }
+
+  toggleSidebar(){
+    this.showSidebar = !this.showSidebar;
   }
 }

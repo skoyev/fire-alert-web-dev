@@ -27,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
+import { HeaderComponent } from '@appShared/header/header.component';
+import { FooterComponent } from '@appShared/footer/footer.component';
 //import { LoginComponent } from '@appContainers/login/login.component';
 import { HeroesComponent } from '@appContainers/heroes/heroes.component';
 import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
@@ -69,6 +71,8 @@ import { CustomRouterStateSerializer } from '@appStore/router';
   declarations: [
     AppComponent,
     DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
     //LoginComponent,
     HeroesComponent,
     HeroDetailComponent,

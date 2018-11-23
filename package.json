@@ -83,7 +83,8 @@
       "@appServices/(.*)": "<rootDir>/src/app/services/$1",
       "@appStore/(.*)": "<rootDir>/src/app/store/$1",
       "@appGuards/(.*)": "<rootDir>/src/app/guards/$1",
-      "@appModels/(.*)": "<rootDir>/src/app/models/$1"
+      "@appModels/(.*)": "<rootDir>/src/app/models/$1",
+      "@appShared/(.*)": "<rootDir>/src/app/shared/$1"
     }
   },
   "repository": {}

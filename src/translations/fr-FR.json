@@ -12,5 +12,8 @@
   "Username is required": "Identifiant requis",
   "Username or password incorrect.": "Identifiant ou mot de passe incorrect.",
   "Remember me": "Rester connecté",
-  "Version": "Version"
+  "Version": "Version",
+  "SIGN_IN_LABEL":"SIGN IN_FR",
+  "FORGOT_PASSWORD_LABEL": "Forgot Password Fr",
+  "CLICK_HERE_LABEL":"Clieck Here Fr"
 }

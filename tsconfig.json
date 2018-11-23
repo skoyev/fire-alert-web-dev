@@ -13,6 +13,7 @@
     "baseUrl": "./src",
     "paths": {
       "@appContainers/*": ["app/containers/*"],
+      "@appShared/*": ["app/shared/*"],
       "@appComponents/*": ["app/components/*"],
       "@appServices/*": ["app/services/*"],
       "@appStore/*": ["app/store/*"],
