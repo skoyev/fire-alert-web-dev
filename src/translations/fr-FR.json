@@ -17,5 +17,8 @@
   "FORGOT_PASSWORD_LABEL": "Forgot Password Fr",
   "CLICK_HERE_LABEL":"Clieck Here Fr",
   "SIGN_OUT_LABEL":"Sign Out Fr",
-  "WELCOME_LABEL":"Welcome Fr"
+  "WELCOME_LABEL":"Welcome Fr",
+  "DASHBOARD_LABEL":"Dashboard Fr",
+  "LATEST_ACTIVITY_LABEL":"LATEST ACTIVITY FR",
+  "NEWS_LABEL":"NEWS FR"
 }

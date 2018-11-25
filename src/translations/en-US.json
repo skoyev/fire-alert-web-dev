@@ -17,5 +17,8 @@
   "FORGOT_PASSWORD_LABEL": "Forgot Password",
   "CLICK_HERE_LABEL":"Clieck Here",
   "SIGN_OUT_LABEL":"Sign Out",
-  "WELCOME_LABEL":"Welcome"
+  "WELCOME_LABEL":"Welcome",
+  "DASHBOARD_LABEL":"Dashboard",
+  "LATEST_ACTIVITY_LABEL":"LATEST ACTIVITY",
+  "NEWS_LABEL":"NEWS"
 }

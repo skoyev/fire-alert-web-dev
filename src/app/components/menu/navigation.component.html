@@ -1,7 +1,7 @@
 <nav id="sidebar" [ngClass]="shouldShowDashboard ? 'active' : ''">
 
   <div class="sidebar-header">
-      <h3>Fire Alert</h3>
+      <h3>{{'DASHBOARD_LABEL'|translate}}</h3>
       <strong>FA</strong>
   </div>
 
@@ -9,55 +9,102 @@
       <li class="active">
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="fas fa-home"></i>
-              Home
+              Calls
           </a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
-                  <a href="#">Home 1</a>
+                  <a href="#">Calls 1</a>
               </li>
               <li>
-                  <a href="#">Home 2</a>
-              </li>
-              <li>
-                  <a href="#">Home 3</a>
+                  <a href="#">Calls 2</a>
               </li>
           </ul>
       </li>
       <li>
           <a href="#" routerLink="/dashboard">
               <i class="fas fa-briefcase"></i>
-              Dashboard
+              Leads
           </a>
           <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
               <i class="fas fa-copy"></i>
-              Pages
+              Work Orders
           </a>
           <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                  <a href="#">Page 1</a>
-              </li>
-              <li>
-                  <a href="#">Page 2</a>
+                  <a href="#">Work Order 1</a>
               </li>
           </ul>
       </li>
       <li>
           <a href="#">
               <i class="fas fa-image"></i>
-              Portfolio
+              Jobs
           </a>
       </li>
       <li>
           <a href="#">
               <i class="fas fa-question"></i>
-              FAQ
+              Customers
           </a>
       </li>
       <li>
           <a href="#">
               <i class="fas fa-paper-plane"></i>
-              Contact
+              Schedule
           </a>
       </li>
-  </ul>
+      <li>
+        <a href="#">
+            <i class="fas fa-paper-plane"></i>
+            Invoices
+        </a>
+      </li>
+      <li>
+        <a href="#">
+            <i class="fas fa-paper-plane"></i>
+            Reports
+        </a>
+      </li>
+    </ul>
+
+    <ul class="list-unstyled components">
+       <li>
+        <a href="#">
+            <i class="fas fa-paper-plane"></i>
+            News
+        </a>
+       </li>            
+       <li>
+         <a href="#">
+            <i class="fas fa-paper-plane"></i>
+            Tools
+         </a>
+        </li>            
+        <li>
+            <a href="#">
+                <i class="fas fa-paper-plane"></i>
+                Directory
+            </a>
+        </li>            
+     </ul>
+     <ul class="list-unstyled components">
+            <li>
+             <a href="#">
+                 <i class="fas fa-paper-plane"></i>
+                 Franchisees
+             </a>
+            </li>            
+            <li>
+              <a href="#">
+                 <i class="fas fa-paper-plane"></i>
+                 Users
+              </a>
+             </li>            
+             <li>
+                 <a href="#">
+                     <i class="fas fa-paper-plane"></i>
+                     Corporate
+                 </a>
+             </li>            
+    </ul>     
 </nav>
