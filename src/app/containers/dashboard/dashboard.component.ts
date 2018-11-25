@@ -8,8 +8,11 @@ import { HeroService } from '@appServices/hero.service';
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 
+import { DashboardService } from '@appServices/dashboard.service';
+
 import { HeaderComponent } from '@appShared/header/header.component';
 import { FooterComponent } from '@appShared/footer/footer.component';
+import { NavigationComponent } from '@appComponents/menu/navigation.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,10 +21,11 @@ import { FooterComponent } from '@appShared/footer/footer.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
-  topHeroes$: Observable<Hero[]>;
-  showSidebar: boolean = false;
+  topHeroes$: Observable<Hero[]>; 
+  private showSidebar: boolean = false;
 
-  constructor(private store: Store<fromReducers.hero.State>) {}
+  constructor(private store: Store<fromReducers.hero.State>,
+              private dashboardService: DashboardService) {}
 
   ngOnInit() {
     this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
@@ -29,5 +33,6 @@ export class DashboardComponent implements OnInit {
 
   toggleSidebar(){
     this.showSidebar = !this.showSidebar;
+    this.dashboardService.setShouldSwowDashboard(this.showSidebar);
   }
 }

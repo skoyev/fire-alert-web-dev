@@ -15,5 +15,7 @@
   "Version": "Version",
   "SIGN_IN_LABEL":"SIGN IN",
   "FORGOT_PASSWORD_LABEL": "Forgot Password",
-  "CLICK_HERE_LABEL":"Clieck Here"
+  "CLICK_HERE_LABEL":"Clieck Here",
+  "SIGN_OUT_LABEL":"Sign Out",
+  "WELCOME_LABEL":"Welcome"
 }

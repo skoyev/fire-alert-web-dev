@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '@appServices/in-memory-data.service';
+import { DashboardService } from '@appServices/dashboard.service';
 
 import { environment } from 'environments/environment';
 
@@ -34,6 +35,7 @@ import { HeroesComponent } from '@appContainers/heroes/heroes.component';
 import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
 import { MessagesComponent } from '@appComponents/messages/messages.component';
 import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.component';
+import { NavigationComponent } from '@appComponents/menu/navigation.component';
 
 import { HeroService } from '@appServices/hero.service';
 import { MessageService } from '@appServices/message.service';
@@ -70,16 +72,18 @@ import { CustomRouterStateSerializer } from '@appStore/router';
   ],
   declarations: [
     AppComponent,
+    NavigationComponent,
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    //LoginComponent,
+    //LoginComponent,    
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent
   ],
   providers: [
+    DashboardService,
     HeroService,
     MessageService,
     I18nService,

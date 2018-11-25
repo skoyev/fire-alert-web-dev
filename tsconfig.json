@@ -14,6 +14,7 @@
     "paths": {
       "@appContainers/*": ["app/containers/*"],
       "@appShared/*": ["app/shared/*"],
+      "@appCore/*": ["app/core/*"],
       "@appComponents/*": ["app/components/*"],
       "@appServices/*": ["app/services/*"],
       "@appStore/*": ["app/store/*"],

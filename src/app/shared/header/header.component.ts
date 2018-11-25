@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
-import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { AuthenticationService, Credentials } from '@appCore/authentication/authentication.service';
 import { Logger } from '../../core/logger.service';
 import { I18nService } from '../../core/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,6 +16,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
   version: string = environment.version;
+  private credentials:Credentials;
 
   constructor(
     private router: Router,
@@ -27,6 +28,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authenticationService.isAuthenticated()){
+      this.credentials = this.authenticationService.credentials;
+    }
   }
 
 

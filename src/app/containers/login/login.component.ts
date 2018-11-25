@@ -5,9 +5,9 @@ import { finalize } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 //import { Logger, I18nService, AuthenticationService } from '@app/core';
-import { AuthenticationService } from '../../core/authentication/authentication.service';
-import { Logger } from '../../core/logger.service';
-import { I18nService } from '../../core/i18n.service';
+import { AuthenticationService } from '@appCore/authentication/authentication.service';
+import { Logger } from '@appCore/logger.service';
+import { I18nService } from '@appCore/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
 
 const log = new Logger('Login');
