@@ -20,5 +20,9 @@
   "WELCOME_LABEL":"Welcome",
   "DASHBOARD_LABEL":"Dashboard",
   "LATEST_ACTIVITY_LABEL":"LATEST ACTIVITY",
-  "NEWS_LABEL":"NEWS"
+  "NEWS_LABEL":"NEWS",
+  "SEARCH_LABEL":"Search",
+  "DASHBOARD_LABEL":"Dashboard",
+  "PROFILE_LABEL":"Profile",
+  "CALENDAR_LABEL":"Calendar"
 }

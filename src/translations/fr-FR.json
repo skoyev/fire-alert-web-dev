@@ -20,5 +20,9 @@
   "WELCOME_LABEL":"Welcome Fr",
   "DASHBOARD_LABEL":"Dashboard Fr",
   "LATEST_ACTIVITY_LABEL":"LATEST ACTIVITY FR",
-  "NEWS_LABEL":"NEWS FR"
+  "NEWS_LABEL":"NEWS FR",
+  "SEARCH_LABEL":"Search Fr",
+  "DASHBOARD_LABEL":"Dashboard Fr",
+  "PROFILE_LABEL":"Profile Fr",
+  "CALENDAR_LABEL":"Calendar_FR"
 }

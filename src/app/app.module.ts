@@ -36,6 +36,9 @@ import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.comp
 import { MessagesComponent } from '@appComponents/messages/messages.component';
 import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.component';
 import { NavigationComponent } from '@appComponents/menu/navigation.component';
+import { NewsListComponent } from '@appComponents/news/news-list.component';
+import { ActivityComponent } from '@appComponents/activity/activity.component';
+import { CalendarComponent } from '@appComponents/calendar/calendar.component';
 
 import { HeroService } from '@appServices/hero.service';
 import { MessageService } from '@appServices/message.service';
@@ -80,7 +83,10 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    NewsListComponent,
+    ActivityComponent,
+    CalendarComponent
   ],
   providers: [
     DashboardService,

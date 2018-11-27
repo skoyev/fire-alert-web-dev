@@ -9,14 +9,11 @@ import { DashboardService } from '@appServices/dashboard.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'dashboard-menu-fire-alert',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  selector: 'activity-fire-alert',
+  templateUrl: './activity.component.html',
+  styleUrls: ['./activity.component.scss']
 })
-export class NavigationComponent implements OnDestroy {
-  shouldShowDashboard: boolean = false;
-  dashBoardSubscription: Subscription;
-  private activeEl: string;
+export class ActivityComponent implements OnDestroy {
 
   constructor(
     private router: Router,
@@ -24,27 +21,13 @@ export class NavigationComponent implements OnDestroy {
     private i18nService: I18nService,
     private dashboardService: DashboardService    
   ) {
-     // subscribe to home component messages
-     this.dashBoardSubscription = this.dashboardService
-                                      .getDashboardSubscription()
-                                      .subscribe(shouldShowDashboard => 
-                                        { this.shouldShowDashboard = shouldShowDashboard; });
   }
 
   ngOnDestroy() {
-    this.dashBoardSubscription.unsubscribe();
   }  
 
   setLanguage(language: string) {
     this.i18nService.language = language;
-  }
-
-  setActive(elem:string){
-    this.activeEl = elem;
-  }
-
-  isActive(elem: string): boolean{
-    return this.activeEl == elem;
   }
 
   get currentLanguage(): string {

@@ -1,15 +1,16 @@
 <header id="dashboard-header" class="container-fluid">
     <div class="row" style="height:100%">
-      <div class="col-md">
+      <div class="col-md" style="">
         <a id="logo" href="https://fire-alert.ca/" title="Fire-alert" target="_self">
             <img width="150px" [src]="'assets/images/firealert.png'" alt="Fire-alert">
         </a>  
       </div>
-      <div class="col-md">
-          <nav class="navbar-custom navbar-expand-lg">
-              <div class="container-fluid">
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="nav navbar-nav ml-auto">
+
+      <div class="col-md" style="height: 100%!;">
+          <nav class="navbar-custom navbar-expand-lg" style="height: 100%;"> 
+              <div class="container-fluid" style="height: 100%;">
+                  <div class="collapse navbar-collapse header-right-fa" id="navbarSupportedContent" style="height: 100%;">
+                      <ul class="nav navbar-nav ml-auto middle">
                           <li class="nav-item active">
                               <span class="nav-link">{{'WELCOME_LABEL' | translate}}, {{credentials.username}}</span>
                           </li>
@@ -20,6 +21,34 @@
                   </div>
               </div>
           </nav>      
+
+          <nav class="navbar-custom navbar-expand-lg" style="height: 100%;"> 
+            <div class="container-fluid" style="height: 100%;">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height: 100%;">
+                    <ul class="nav navbar-nav ml-auto middle">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" routerLink="/dashboard">
+                                <i class="fas fa-search"></i>
+                                {{'SEARCH_LABEL'|translate}}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" routerLink="/dashboard">
+                                <i class="fas fa-home"></i>
+                                {{'DASHBOARD_LABEL'|translate}}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#" routerLink="/dashboard">
+                                <i class="fas fa-th-list"></i>
+                                {{'PROFILE_LABEL'|translate}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>      
+
       </div>
     </div>
 </header>
