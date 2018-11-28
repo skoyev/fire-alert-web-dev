@@ -3,20 +3,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { AuthenticationService, Credentials } from '@appCore/authentication/authentication.service';
-import { Logger } from '../../core/logger.service';
-import { I18nService } from '../../core/i18n.service';
+import { Logger } from '../../../core/logger.service';
+import { I18nService } from '../../../core/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'header-fire-alert',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'list-item-fire-alert',
+  templateUrl: './list-item.component.html',
+  styleUrls: ['./list-item.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class ListItemComponent implements OnInit {
   version: string = environment.version;
-  private credentials:Credentials;
+  credentials:Credentials;
 
   constructor(
     private router: Router,

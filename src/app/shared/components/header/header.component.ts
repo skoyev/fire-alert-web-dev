@@ -3,19 +3,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
-import { AuthenticationService } from '../../core/authentication/authentication.service';
-import { Logger } from '../../core/logger.service';
-import { I18nService } from '../../core/i18n.service';
+import { environment } from '../../../../environments/environment';
+import { AuthenticationService, Credentials } from '@appCore/authentication/authentication.service';
+import { Logger } from '../../../core/logger.service';
+import { I18nService } from '../../../core/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'footer-fire-alert',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  selector: 'header-fire-alert',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class HeaderComponent implements OnInit {
   version: string = environment.version;
+  credentials:Credentials;
 
   constructor(
     private router: Router,
@@ -27,6 +28,9 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.authenticationService.isAuthenticated()){
+      this.credentials = this.authenticationService.credentials;
+    }
   }
 
 

@@ -28,8 +28,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
-import { HeaderComponent } from '@appShared/header/header.component';
-import { FooterComponent } from '@appShared/footer/footer.component';
+import { HeaderComponent } from '@appShared/components/header/header.component';
+import { ListItemComponent } from '@appShared/components/list-item/list-item.component';
+import { FooterComponent } from '@appShared/components/footer/footer.component';
 //import { LoginComponent } from '@appContainers/login/login.component';
 import { HeroesComponent } from '@appContainers/heroes/heroes.component';
 import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.component';
@@ -48,6 +49,9 @@ import { AuthenticationService } from './core/authentication/authentication.serv
 import * as fromStore from '@appStore/index';
 import { CustomRouterStateSerializer } from '@appStore/router';
 
+//import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -57,6 +61,12 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     HttpClientModule,
     TranslateModule.forRoot(),
     LoginModule,
+    /*
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    */
     StoreModule.forRoot(fromStore.reducers),
     EffectsModule.forRoot(fromStore.effects),
     StoreRouterConnectingModule.forRoot({
@@ -86,7 +96,8 @@ import { CustomRouterStateSerializer } from '@appStore/router';
     HeroSearchComponent,
     NewsListComponent,
     ActivityComponent,
-    CalendarComponent
+    CalendarComponent,
+    ListItemComponent
   ],
   providers: [
     DashboardService,

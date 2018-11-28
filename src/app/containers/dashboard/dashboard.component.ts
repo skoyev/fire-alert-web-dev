@@ -10,12 +10,6 @@ import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
 
-import { FooterComponent } from '@appShared/footer/footer.component';
-import { HeaderComponent } from '@appShared/header/header.component';
-import { NewsListComponent } from '@appComponents/news/news-list.component';
-import { NavigationComponent } from '@appComponents/menu/navigation.component';
-import { ActivityComponent } from '@appComponents/activity/activity.component';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

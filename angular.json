@@ -33,7 +33,8 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/main.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": false
           },
           "configurations": {
             "production": {
