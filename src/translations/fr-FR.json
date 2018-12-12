@@ -15,19 +15,19 @@
   "Version": "Version",
   "SIGN_IN_LABEL":"SIGN IN_FR",
   "FORGOT_PASSWORD_LABEL": "Forgot Password Fr",
-  "CLICK_HERE_LABEL":"Clieck Here Fr",
+  "CLICK_HERE_LABEL":"Click Here Fr",
   "SIGN_OUT_LABEL":"Sign Out Fr",
   "WELCOME_LABEL":"Welcome Fr",
   "DASHBOARD_LABEL":"Dashboard Fr",
   "LATEST_ACTIVITY_LABEL":"LATEST ACTIVITY FR",
   "NEWS_LABEL":"NEWS FR",
   "SEARCH_LABEL":"Search Fr",
-  "DASHBOARD_LABEL":"Dashboard Fr",
   "PROFILE_LABEL":"Profile Fr",
   "CALENDAR_LABEL":"Calendar_FR",
   "ANALYTICS_LABEL":"ANALYTICS",
   "OVERDUE_LABEL":"OVERDUE",
   "CREATE_NEW_LABEL":"CREATE_NEW",
-  "REMINDERS_LABEL":"REMINDERS"
+  "REMINDERS_LABEL":"REMINDERS",
+  "CHOOSE_LANG_LABEL": "Language Fr"
 
 }
