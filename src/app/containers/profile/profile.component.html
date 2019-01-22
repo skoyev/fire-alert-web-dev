@@ -1,0 +1,38 @@
+<header-fire-alert></header-fire-alert>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <dashboard-menu-fire-alert></dashboard-menu-fire-alert>
+  <!-- Page Content  -->
+  <div id="content" style="height: 100%;">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%">
+            <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info" (click)="toggleSidebar()">
+                            <i class="fas fa-align-left"></i>                            
+                    </button>    
+    
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!--ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Page</a>
+                        </li>
+                    </ul-->
+                </div>
+            </div>
+        </nav>          
+      </div>
+      <div class="row">
+          <div class="col-8" style="border-right: 1px solid #d6e1e6;">                 
+                Column 1
+          </div>
+          <div class="col-4">
+                Column 2
+          </div>
+      </div>
+  </div>
+</div>
+<footer-fire-alert></footer-fire-alert>

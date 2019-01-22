@@ -51,6 +51,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
 
 //import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import { ProfileComponent } from '@appContainers/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -89,7 +90,8 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    //LoginComponent,    
+    //LoginComponent, 
+    ProfileComponent,   
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,

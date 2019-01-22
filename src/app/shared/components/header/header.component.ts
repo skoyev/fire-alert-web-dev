@@ -33,6 +33,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  showProfile(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('Profile');
+  }
 
   setLanguage(language: string) {
     this.i18nService.language = language;
