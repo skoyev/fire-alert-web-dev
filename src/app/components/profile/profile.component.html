@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-8">
+    </div>
+    <div class="col-4">   
+        <ul>
+            <li>
+                <a [ngClass]="{selected: shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, true)">
+                        <i class="fas fa-th-list"></i>
+                        {{'ABOUT_ME_LABEL'|translate}}
+                </a>            
+            </li>
+            <li>
+                <a [ngClass]="{selected: !shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, false)">
+                        <i class="fas fa-copy"></i>
+                        {{'ABOUT_MY_BUSINESS_LABEL'|translate}}
+                </a>            
+            </li>
+        </ul>     
+    </div>
+    <div style="width: 100%">
+        <app-profile-personal-cmp *ngIf="shouldShowProfile"></app-profile-personal-cmp>
+        <app-profile-business-cmp *ngIf="!shouldShowProfile"></app-profile-business-cmp>
+    </div>
+</div>
+

@@ -7,18 +7,12 @@ import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.comp
 import { HeroesGuard } from '@appGuards/heroes.guard';
 import { SelectedHeroGuard } from '@appGuards/selected-hero.guard';
 import { LoginComponent } from '@appContainers/login/login.component';
-import { ProfileComponent } from '@appContainers/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [HeroesGuard]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
     canActivate: [HeroesGuard]
   },
   {

@@ -11,22 +11,22 @@ import * as fromReducers from '@appStore/reducers';
 import { DashboardService } from '@appServices/dashboard.service';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-profile-cmp',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
-  private showSidebar: boolean = false;
+export class ProfileComponentNew implements OnInit {
+  shouldShowProfile:boolean = true;
 
-  constructor(private store: Store<fromReducers.hero.State>,
-              private dashboardService: DashboardService) {}
+  constructor(private store: Store<fromReducers.hero.State>) {}
 
   ngOnInit() {
   }
 
-  toggleSidebar(){
-    this.showSidebar = !this.showSidebar;
-    this.dashboardService.setShouldSwowDashboard(this.showSidebar);
+  showPersonalProfile(event:any, shouldShowProfile:boolean){
+    event.preventDefault();
+    event.stopPropagation();    
+
+    this.shouldShowProfile = shouldShowProfile;
   }
 }

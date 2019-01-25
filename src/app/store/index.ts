@@ -24,12 +24,14 @@ import { RouterStateUrl } from '@appStore/router';
 export interface State {
   hero: fromReducers.hero.State;
   search: fromReducers.search.State;
+  user: fromReducers.user.State;
   router: RouterReducerState<RouterStateUrl>;
 }
 
 export const reducers: ActionReducerMap<State> = {
   hero: fromReducers.hero.reducer,
   search: fromReducers.search.reducer,
+  user: fromReducers.user.reducer,
   router: routerReducer
 };
 

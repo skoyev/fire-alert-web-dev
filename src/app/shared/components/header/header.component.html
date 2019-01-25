@@ -33,13 +33,13 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" routerLink="/dashboard">
+                            <a class="nav-link" href="#" (click)="showProfile($event, false)">
                                 <i class="fas fa-home"></i>
                                 {{'DASHBOARD_LABEL'|translate}}
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" (click)="showProfile($event)">
+                            <a class="nav-link" href="#" (click)="showProfile($event, true)">
                                 <i class="fas fa-th-list"></i>
                                 {{'PROFILE_LABEL'|translate}}
                             </a>

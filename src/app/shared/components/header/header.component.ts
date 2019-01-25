@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
+import * as fromReducers from '@appStore/reducers';
 
 import { environment } from '../../../../environments/environment';
 import { AuthenticationService, Credentials } from '@appCore/authentication/authentication.service';
 import { Logger } from '../../../core/logger.service';
 import { I18nService } from '../../../core/i18n.service';
 import {TranslateService} from '@ngx-translate/core';
+import { Store } from '@ngrx/store';
+import { SearchReset } from '@appStore/actions/search.actions';
+import { ShowProfile } from '@appStore/actions/user.actions';
 
 @Component({
   selector: 'header-fire-alert',
@@ -23,6 +27,7 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
+    private store: Store<fromReducers.hero.State>,
     private authenticationService: AuthenticationService
   ) {
   }
@@ -33,10 +38,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  showProfile(event) {
+  showProfile(event:any, shouldShowProfile:boolean) {
     event.preventDefault();
-    event.stopPropagation();
-    console.log('Profile');
+    event.stopPropagation();    
+    this.store.dispatch(new ShowProfile(shouldShowProfile))
   }
 
   setLanguage(language: string) {

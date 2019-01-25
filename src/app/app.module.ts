@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginModule } from './containers/login/login.module';
 
@@ -29,7 +28,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from '@appContainers/dashboard/dashboard.component';
 import { HeaderComponent } from '@appShared/components/header/header.component';
-import { ListItemComponent } from '@appShared/components/list-item/list-item.component';
 import { FooterComponent } from '@appShared/components/footer/footer.component';
 //import { LoginComponent } from '@appContainers/login/login.component';
 import { HeroesComponent } from '@appContainers/heroes/heroes.component';
@@ -37,31 +35,29 @@ import { HeroDetailComponent } from '@appContainers/hero-detail/hero-detail.comp
 import { MessagesComponent } from '@appComponents/messages/messages.component';
 import { HeroSearchComponent } from '@appComponents/hero-search/hero-search.component';
 import { NavigationComponent } from '@appComponents/menu/navigation.component';
-import { NewsListComponent } from '@appComponents/news/news-list.component';
-import { ActivityComponent } from '@appComponents/activity/activity.component';
-import { CalendarComponent } from '@appComponents/calendar/calendar.component';
 
 import { HeroService } from '@appServices/hero.service';
 import { MessageService } from '@appServices/message.service';
 import { I18nService } from './core/i18n.service';
-import { AuthenticationService } from './core/authentication/authentication.service';
 
 import * as fromStore from '@appStore/index';
 import { CustomRouterStateSerializer } from '@appStore/router';
 
 //import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
-import { ProfileComponent } from '@appContainers/profile/profile.component';
+import { ComponentsModule } from '@appComponents/components.module';
+import { ProfileComponentNew } from '@appComponents/profile/profile.component';
 
 @NgModule({
   imports: [
+    FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot(),
     LoginModule,
+    ComponentsModule,
     /*
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -91,26 +87,17 @@ import { ProfileComponent } from '@appContainers/profile/profile.component';
     HeaderComponent,
     FooterComponent,
     //LoginComponent, 
-    ProfileComponent,   
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    NewsListComponent,
-    ActivityComponent,
-    CalendarComponent,
-    ListItemComponent
+    //ProfileComponentNew
   ],
   providers: [
     DashboardService,
     HeroService,
     MessageService,
-    I18nService,
-    AuthenticationService,
-    {
-      provide: RouterStateSerializer,
-      useClass: CustomRouterStateSerializer
-    }
+    I18nService
   ],
   bootstrap: [AppComponent]
 })

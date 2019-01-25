@@ -9,6 +9,7 @@ import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,12 +20,26 @@ import { DashboardService } from '@appServices/dashboard.service';
 export class DashboardComponent implements OnInit {
   topHeroes$: Observable<Hero[]>; 
   private showSidebar: boolean = false;
+  private showProfile: boolean = false;
 
   constructor(private store: Store<fromReducers.hero.State>,
               private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
+    //this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
+    
+    this.store.select(fromSelectors.getShowProfile)        
+        .subscribe(r => {
+          this.showProfile = r;          
+    })
+
+    /*
+    this.store.select(fromSelectors.getSearchStore)
+        .pipe(filter(r => r != null))
+        .subscribe(r => {
+          //this.showProfile = true;          
+    })
+    */
   }
 
   toggleSidebar(){
