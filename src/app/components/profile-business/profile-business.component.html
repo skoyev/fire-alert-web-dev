@@ -1,9 +1,11 @@
 <div class="row">
-    <div class="col-8" style="border-right: 1px solid #d6e1e6;">                 
-        Business 1
+    <div class="col-3">                 
+        <div class="bold">{{'LEGAL_NAME_LABEL'|translate}}:</div>
+        <div class="bold">{{'BISINESS_REGISTRATION_NUM_LABEL'|translate}}:</div>
     </div>
-    <div class="col-4">
-        Business 2
+    <div class="col-9">
+        <div>{{profile.business.legalName}}</div>
+        <div>{{profile.business.businessRegNum}}</div>
     </div>
 </div>
 

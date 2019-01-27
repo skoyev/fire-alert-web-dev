@@ -30,5 +30,7 @@
   "REMINDERS_LABEL":"REMINDERS",
   "CHOOSE_LANG_LABEL": "Language",
   "ABOUT_ME_LABEL": "About Me",
-  "ABOUT_MY_BUSINESS_LABEL": "About My Business"
+  "ABOUT_MY_BUSINESS_LABEL": "About My Business",
+  "LEGAL_NAME_LABEL":"Legal Name",
+  "BISINESS_REGISTRATION_NUM_LABEL":"Business Registration #"
 }
