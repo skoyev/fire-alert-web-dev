@@ -30,5 +30,13 @@
   "REMINDERS_LABEL":"REMINDERS",
   "CHOOSE_LANG_LABEL": "Language Fr",
   "LEGAL_NAME_LABEL":"Legal Name Fr",
-  "BISINESS_REGISTRATION_NUM_LABEL":"Business Registration # Fr"
+  "BISINESS_REGISTRATION_NUM_LABEL":"Business Registration # Fr",
+  "OWNERSHIP_LABEL":"% of Ownership Fr",
+  "TAXES_LABEL": "Taxes",
+  "AGR_START_DATE_LABEL": "Agreement Start Date Fr",
+  "AGR_RENEWAL_DATE_LABEL": "Agreement Renewal Date Fr",
+  "ROYALTY_FEE_LABEL" : "Royalty Fee Fr",
+  "MARKETING_FEE_LABEL" : "Marketing Fee Fr",
+  "TEAM_LABEL": "Team Fr",
+  "EDIT_LABEL": "Edit Fr"
 }

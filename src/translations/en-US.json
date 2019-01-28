@@ -32,5 +32,13 @@
   "ABOUT_ME_LABEL": "About Me",
   "ABOUT_MY_BUSINESS_LABEL": "About My Business",
   "LEGAL_NAME_LABEL":"Legal Name",
-  "BISINESS_REGISTRATION_NUM_LABEL":"Business Registration #"
+  "BISINESS_REGISTRATION_NUM_LABEL":"Business Registration #",
+  "OWNERSHIP_LABEL":"% of Ownership",
+  "TAXES_LABEL": "Taxes",
+  "AGR_START_DATE_LABEL": "Agreement Start Date",
+  "AGR_RENEWAL_DATE_LABEL": "Agreement Renewal Date",
+  "ROYALTY_FEE_LABEL" : "Royalty Fee",
+  "MARKETING_FEE_LABEL" : "Marketing Fee",
+  "TEAM_LABEL": "Team",
+  "EDIT_LABEL": "Edit"
 }

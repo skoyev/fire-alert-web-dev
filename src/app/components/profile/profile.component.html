@@ -41,5 +41,8 @@
         <app-profile-personal-cmp [profile]="profile" *ngIf="shouldShowProfile"></app-profile-personal-cmp>
         <app-profile-business-cmp [profile]="profile" *ngIf="!shouldShowProfile"></app-profile-business-cmp>
     </div>
-</div>
 
+    <div *ngIf="!shouldShowProfile" style="width: 100%; margin-top:20px;">
+        <app-profile-team-cmp [employees]="employees"></app-profile-team-cmp>
+    </div>    
+</div>

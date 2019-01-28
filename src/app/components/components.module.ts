@@ -15,6 +15,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
 import { AuthenticationService } from '../core/authentication/authentication.service';
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { ProfilePersonalComponent } from './profile-personal/profile-personal.component';
+import { ProfileTeamComponent } from './profile-team/profile-team.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ProfilePersonalComponent } from './profile-personal/profile-personal.co
     ActivityComponent,
     ListItemComponent,
     ProfileBusinessComponent,
-    ProfilePersonalComponent
+    ProfilePersonalComponent,
+    ProfileTeamComponent
   ],   
   exports: [
     ProfileComponentNew,
@@ -41,7 +43,8 @@ import { ProfilePersonalComponent } from './profile-personal/profile-personal.co
     ActivityComponent,
     ListItemComponent,
     ProfileBusinessComponent,
-    ProfilePersonalComponent
+    ProfilePersonalComponent,
+    ProfileTeamComponent
   ],  
   providers: [    
     AuthenticationService,
