@@ -16,6 +16,7 @@ import { AuthenticationService } from '../core/authentication/authentication.ser
 import { ProfileBusinessComponent } from './profile-business/profile-business.component';
 import { ProfilePersonalComponent } from './profile-personal/profile-personal.component';
 import { ProfileTeamComponent } from './profile-team/profile-team.component';
+import { TerritoryComponent } from './territory/territory.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ProfileTeamComponent } from './profile-team/profile-team.component';
     ListItemComponent,
     ProfileBusinessComponent,
     ProfilePersonalComponent,
-    ProfileTeamComponent
+    ProfileTeamComponent,
+    TerritoryComponent
   ],   
   exports: [
     ProfileComponentNew,
@@ -44,7 +46,8 @@ import { ProfileTeamComponent } from './profile-team/profile-team.component';
     ListItemComponent,
     ProfileBusinessComponent,
     ProfilePersonalComponent,
-    ProfileTeamComponent
+    ProfileTeamComponent,
+    TerritoryComponent
   ],  
   providers: [    
     AuthenticationService,

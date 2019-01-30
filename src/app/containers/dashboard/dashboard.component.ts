@@ -10,6 +10,8 @@ import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
 import { filter } from 'rxjs/operators';
+import { Profile, BusinessProfile } from '@appModels/profile';
+import { Employee } from '@appModels/employee';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +20,10 @@ import { filter } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
+  profile:Profile;
+  employees:Employee[];
+  codes:string[];
+
   topHeroes$: Observable<Hero[]>; 
   private showSidebar: boolean = false;
   private showProfile: boolean = false;
@@ -40,6 +46,27 @@ export class DashboardComponent implements OnInit {
           //this.showProfile = true;          
     })
     */
+
+    // TODO: Dummy data
+    this.profile = new Profile();
+    this.profile.name = 'Sylvan Houle';
+    this.profile.type = 'Owner'
+
+    this.profile.business = new BusinessProfile();
+    this.profile.business.legalName = 'Fire-Alert Oakville';
+    this.profile.business.businessRegNum = '11091122Ontario';
+    this.profile.business.ownership = 100;
+    this.profile.business.agrStartDate = '01 December 2018';
+    this.profile.business.agrRenewalDate = '01 December 2023';
+    this.profile.business.royaltyFee = 4;
+    this.profile.business.marketingFee = 2;
+    this.profile.business.taxes = 'HST';
+
+    this.employees = new Array<Employee>();
+    this.employees.push(new Employee('Duncan Long','Field Technician'));
+    this.employees.push(new Employee('Tyler Girloy','Field Technician'));
+
+    this.codes = ['L6M 3C3', 'L2M 8N9'];
   }
 
   toggleSidebar(){

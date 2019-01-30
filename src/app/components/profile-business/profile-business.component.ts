@@ -10,6 +10,7 @@ import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
 import { Profile } from '@appModels/profile';
+import { Employee } from '@appModels/employee';
 
 @Component({
   selector: 'app-profile-business-cmp',
@@ -18,7 +19,9 @@ import { Profile } from '@appModels/profile';
 })
 export class ProfileBusinessComponent implements OnInit {
   @Input() profile:Profile;
-
+  @Input() employees:Employee[];
+  @Input() codes:string[];
+  
   constructor(private store: Store<fromReducers.hero.State>) {}
 
   ngOnInit() {

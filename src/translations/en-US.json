@@ -39,6 +39,9 @@
   "AGR_RENEWAL_DATE_LABEL": "Agreement Renewal Date",
   "ROYALTY_FEE_LABEL" : "Royalty Fee",
   "MARKETING_FEE_LABEL" : "Marketing Fee",
-  "TEAM_LABEL": "Team",
-  "EDIT_LABEL": "Edit"
+  "TEAM_LABEL": "TEAM",
+  "EDIT_LABEL": "Edit",
+  "TERRITORY_LABEL": "TERRITORY DETAILS",
+  "TERRITORY_DETAILS_LABEL": "Oakville is a suburban town in southern Ontario, located in Halton Region on Lake Ontario halfway between Toronto and Hamilton, and is a part of the GTA.",
+  "POSTAL_CODES_LABEL": "Postal Codes"
 }

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="padding-left: 50px;">
     <div class="col-8">
         <div class="row">
                 <div class="col-2">
@@ -6,11 +6,11 @@
                 </div>
                 <div class="col-10" style="padding-top:25px;">
                     <div class="row">
-                        <div class="col-4">
-                            <h3>Sylvan Houle</h3>
+                        <div class="col-5">
+                            <h3>{{profile.name}}</h3>
                         </div>
-                        <div class="col-8">
-                            <h3 style="color:red">Owner</h3>
+                        <div class="col-7">
+                            <h3 style="color:red">{{profile.type}}</h3>
                         </div>                        
                     </div>
                     <div class="row">
@@ -39,10 +39,11 @@
     </div>
     <div style="width: 100%">
         <app-profile-personal-cmp [profile]="profile" *ngIf="shouldShowProfile"></app-profile-personal-cmp>
-        <app-profile-business-cmp [profile]="profile" *ngIf="!shouldShowProfile"></app-profile-business-cmp>
+        <app-profile-business-cmp [profile]="profile" 
+                                  [employees]="employees" 
+                                  [codes]="codes"
+                                  *ngIf="!shouldShowProfile">
+        </app-profile-business-cmp>
     </div>
 
-    <div *ngIf="!shouldShowProfile" style="width: 100%; margin-top:20px;">
-        <app-profile-team-cmp [employees]="employees"></app-profile-team-cmp>
-    </div>    
 </div>

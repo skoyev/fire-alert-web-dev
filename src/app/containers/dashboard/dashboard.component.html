@@ -25,7 +25,11 @@
             </div>
         </nav>          
       </div>
-      <app-profile-cmp *ngIf="showProfile"></app-profile-cmp>
+      <app-profile-cmp *ngIf="showProfile" 
+                       [codes]="codes"
+                       [profile]="profile" 
+                       [employees]="employees">
+      </app-profile-cmp>
       <app-dashboard-cmp *ngIf="!showProfile"></app-dashboard-cmp>
   </div>
 </div>

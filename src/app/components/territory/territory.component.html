@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-8">
+        <h3 class="middle">{{'TERRITORY_LABEL'|translate}}</h3>
+        <img src="https://www.google.com/maps/vt/data=ah3LUJXVhZorZDTZRnXDXkNL0dOffGxSnROQL6qehS2toz2VhR1f1TqzwOzj_JLn6lgCoXWlTXwTIlgXEP6T14-Mr1YBqam5GT6ycuTDsSrWjazdD7DNTVBQuYPNnbLxTHluc-crlmcb5zJRB9MbX3h_uBFUZWONxGCWpKluEUCsUohzvNtvLn5qFlZd9pT1NGfNRtPqUAynBz2GJdVa" style="border:0" height="328" id="lu_map" width="632" title="Map of Oakville, ON" alt="Map of Oakville, ON" data-atf="3">       
+        <div class="details">
+            {{'TERRITORY_DETAILS_LABEL'|translate}}
+        </div>
+        <div class="top-50">
+            <span class="red">{{'POSTAL_CODES_LABEL'|translate}}:</span>
+            <span *ngFor="let code of codes" class="left-10">{{code}}</span>
+        </div>
+    </div>
+    <div class="col-4">
+        
+    </div>
+</div>
+

@@ -1,6 +1,8 @@
 export class Profile {
     business: BusinessProfile;
     personal: PesonalProfile;
+    name:string;
+    type:string;
 }
 
 export class BusinessProfile{
@@ -15,5 +17,4 @@ export class BusinessProfile{
 }
 
 export class PesonalProfile{
-    
 }

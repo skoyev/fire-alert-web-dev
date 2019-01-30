@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -18,29 +18,15 @@ import { Employee } from '@appModels/employee';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponentNew implements OnInit {
-  profile:Profile;
-  employees:Employee[];
+  @Input() profile:Profile;
+  @Input() employees:Employee[];
+  @Input() codes:string[];
+
   shouldShowProfile:boolean = true;
 
   constructor(private store: Store<fromReducers.hero.State>) {}
 
-  ngOnInit() {
-    // TODO: Dummy data
-    this.profile = new Profile();
-    this.profile.business = new BusinessProfile();
-    this.profile.business.legalName = 'Fire-Alert Oakville';
-    this.profile.business.businessRegNum = '11091122Ontario';
-    this.profile.business.ownership = 100;
-    this.profile.business.agrStartDate = '01 December 2018';
-    this.profile.business.agrRenewalDate = '01 December 2023';
-    this.profile.business.royaltyFee = 4;
-    this.profile.business.marketingFee = 2;
-    this.profile.business.taxes = 'HST';
-
-    this.employees = new Array<Employee>();
-    this.employees.push(new Employee('Duncan Long','Field Technician'));
-    this.employees.push(new Employee('Tyler Girloy','Field Technician'));
-  }
+  ngOnInit() {}
 
   showPersonalProfile(event:any, shouldShowProfile:boolean){
     event.preventDefault();

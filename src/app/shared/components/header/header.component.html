@@ -26,20 +26,20 @@
             <div class="container-fluid" style="height: 100%;">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="height: 100%;">
                     <ul class="nav navbar-nav ml-auto middle">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#" routerLink="/dashboard">
+                        <li class="nav-item" [ngClass]="{'active-item': isActiveMenu('search')}">
+                            <a class="nav-link" href="#" routerLink="/dashboard" (click)="clickMenu($event, 'search')">
                                 <i class="fas fa-search"></i>
                                 {{'SEARCH_LABEL'|translate}}
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#" (click)="showProfile($event, false)">
+                        <li class="nav-item" [ngClass]="{'active-item': isActiveMenu('dashboard')}">
+                            <a class="nav-link" href="#" (click)="clickMenu($event, 'dashboard')">
                                 <i class="fas fa-home"></i>
                                 {{'DASHBOARD_LABEL'|translate}}
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#" (click)="showProfile($event, true)">
+                        <li class="nav-item" [ngClass]="{'active-item': isActiveMenu('profile')}">
+                            <a class="nav-link" href="#" (click)="clickMenu($event, 'profile')">
                                 <i class="fas fa-th-list"></i>
                                 {{'PROFILE_LABEL'|translate}}
                             </a>

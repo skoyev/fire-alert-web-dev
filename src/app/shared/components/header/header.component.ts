@@ -21,6 +21,7 @@ import { ShowProfile } from '@appStore/actions/user.actions';
 export class HeaderComponent implements OnInit {
   version: string = environment.version;
   credentials:Credentials;
+  activeMenu:string;
 
   constructor(
     private router: Router,
@@ -38,10 +39,27 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  showProfile(event:any, shouldShowProfile:boolean) {
+  clickMenu(event:any, item:string) {
     event.preventDefault();
-    event.stopPropagation();    
-    this.store.dispatch(new ShowProfile(shouldShowProfile))
+    event.stopPropagation();
+
+    this.activeMenu = item;
+    switch(item){
+      case "profile": {        
+        this.store.dispatch(new ShowProfile(true))
+        break;
+      }
+
+      case "dashboard": {
+        this.store.dispatch(new ShowProfile(false))
+        break;
+      }
+
+      case "search": {
+        this.store.dispatch(new ShowProfile(false))
+        break;
+      }
+    }    
   }
 
   setLanguage(language: string) {
@@ -54,5 +72,9 @@ export class HeaderComponent implements OnInit {
 
   get languages(): string[] {
     return this.i18nService.supportedLanguages;
+  }
+
+  isActiveMenu(item:string):boolean {
+    return this.activeMenu == item;
   }
 }
