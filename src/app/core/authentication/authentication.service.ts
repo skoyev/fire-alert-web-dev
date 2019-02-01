@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { tap, catchError } from 'rxjs/operators';
 
 export interface Credentials {
   // Customize received credentials here
   username: string;
   token: string;
+  firstName: string;
+  lastName: string;
+  role?: Role[];
+}
+
+export interface Role {
+  name: string;
 }
 
 export interface LoginContext {
@@ -22,8 +31,9 @@ const credentialsKey = 'credentials';
 @Injectable()
 export class AuthenticationService {
   private _credentials: Credentials | null;
+  private authUrl:string = '/users/authenticate';
 
-  constructor() {
+  constructor(private http:HttpClient) {
     const savedCredentials =
       sessionStorage.getItem(credentialsKey) ||
       localStorage.getItem(credentialsKey);
@@ -38,13 +48,9 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456'
-    };
-    this.setCredentials(data, context.remember);
-    return of(data);
+    let credentials:any = {"username": context.username, "password": context.password};
+    return this.http.post<Credentials>(this.authUrl, credentials)
+               .pipe(tap((c:Credentials) => this.setCredentials(c)));    
   }
 
   /**

@@ -6,7 +6,13 @@
   </div>
 
   <ul class="list-unstyled components">
-      <li [ngClass]="isActive('Calls') ? 'active' : ''">
+        <li [ngClass]="isActive('Dashboard') ? 'active' : ''">
+                <a href="#" routerLink="/dashboard" (click)="setActive('Dashboard')">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+        </li>
+        <li [ngClass]="isActive('Calls') ? 'active' : ''">
           <a href="#" routerLink="/dashboard" (click)="setActive('Calls')">
               <i class="fas fa-home"></i>
               Calls

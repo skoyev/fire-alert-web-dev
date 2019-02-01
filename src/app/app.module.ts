@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -47,6 +47,7 @@ import { CustomRouterStateSerializer } from '@appStore/router';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { ComponentsModule } from '@appComponents/components.module';
 import { ProfileComponentNew } from '@appComponents/profile/profile.component';
+import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
 
 @NgModule({
   imports: [
@@ -97,7 +98,9 @@ import { ProfileComponentNew } from '@appComponents/profile/profile.component';
     DashboardService,
     HeroService,
     MessageService,
-    I18nService
+    I18nService,
+    // provider used to create fake backend
+    fakeBackendProvider    
   ],
   bootstrap: [AppComponent]
 })
