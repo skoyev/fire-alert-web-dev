@@ -60,3 +60,7 @@ h4 {
     min-width: 60px;
   }
 }
+
+.expand-item{
+  height: 250px;
+}

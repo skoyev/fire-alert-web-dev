@@ -17,4 +17,15 @@ export class BusinessProfile{
 }
 
 export class PesonalProfile{
+    firstName:string;
+    lastName:string;
+    gender:string;
+    age:number;
+    birthday:string;
+    homePhone:string;
+    cellPhone:string;
+    address:string;
+    email:string;
+    website:string;
+
 }

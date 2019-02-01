@@ -10,7 +10,7 @@ import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
 import { filter } from 'rxjs/operators';
-import { Profile, BusinessProfile } from '@appModels/profile';
+import { Profile, BusinessProfile, PesonalProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 
 @Component({
@@ -62,11 +62,23 @@ export class DashboardComponent implements OnInit {
     this.profile.business.marketingFee = 2;
     this.profile.business.taxes = 'HST';
 
+    this.profile.personal = new PesonalProfile();
+    this.profile.personal.firstName = 'Sylvain';
+    this.profile.personal.lastName  = 'Houle';
+    this.profile.personal.gender    = 'Male';
+    this.profile.personal.age       =  34;
+    this.profile.personal.birthday  = '01 July 1984';
+    this.profile.personal.homePhone = '905.847.7333';
+    this.profile.personal.cellPhone = '647.515.8328';
+    this.profile.personal.address   = '3363 Regal Rd. Burlington, ON L7N 1LP';
+    this.profile.personal.email     = 'sylvain@fire-alert.ca';
+    this.profile.personal.website   = 'https://fire-alert.ca/franchaise/oakville';
+
     this.employees = new Array<Employee>();
     this.employees.push(new Employee('Duncan Long','Field Technician'));
     this.employees.push(new Employee('Tyler Girloy','Field Technician'));
 
-    this.codes = ['L6M 3C3', 'L2M 8N9'];
+    this.codes = ['L6M 3C3', 'L2M 8N9', 'L2B 8N9', 'L2C 8N9', 'L2G 8N9', 'L2R 8N9'];
   }
 
   toggleSidebar(){
