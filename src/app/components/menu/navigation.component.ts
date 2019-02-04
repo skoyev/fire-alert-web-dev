@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
@@ -17,6 +17,9 @@ export class NavigationComponent implements OnDestroy {
   shouldShowDashboard: boolean = false;
   dashBoardSubscription: Subscription;
   private activeEl: string;
+  @Input() menuItems1: string[];
+  @Input() menuItems2: string[];
+  @Input() menuItems3: string[];
 
   constructor(
     private router: Router,
@@ -29,6 +32,7 @@ export class NavigationComponent implements OnDestroy {
                                       .getDashboardSubscription()
                                       .subscribe(shouldShowDashboard => 
                                         { this.shouldShowDashboard = shouldShowDashboard; });
+      this.activeEl = this.router.url.replace('/','').toLowerCase();
   }
 
   ngOnDestroy() {
@@ -40,11 +44,11 @@ export class NavigationComponent implements OnDestroy {
   }
 
   setActive(elem:string){
-    this.activeEl = elem;
+    this.activeEl = elem.toLowerCase();
   }
 
   isActive(elem: string): boolean{
-    return this.activeEl == elem;
+    return this.activeEl == elem.toLowerCase();
   }
 
   get currentLanguage(): string {

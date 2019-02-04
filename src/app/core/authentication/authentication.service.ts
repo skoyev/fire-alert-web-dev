@@ -9,7 +9,7 @@ export interface Credentials {
   token: string;
   firstName: string;
   lastName: string;
-  role?: Role[];
+  roles?: Role[];
 }
 
 export interface Role {

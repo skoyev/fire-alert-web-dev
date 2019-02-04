@@ -23,6 +23,10 @@ export class DashboardComponent implements OnInit {
   profile:Profile;
   employees:Employee[];
   codes:string[];
+  menuItems1:string[];
+  menuItems2:string[];
+  menuItems3:string[];
+  showAboutMe:boolean;
 
   topHeroes$: Observable<Hero[]>; 
   private showSidebar: boolean = false;
@@ -51,6 +55,7 @@ export class DashboardComponent implements OnInit {
     this.profile = new Profile();
     this.profile.name = 'Sylvan Houle';
     this.profile.type = 'Owner'
+    this.profile.location = 'Fire Alert Oakville';
 
     this.profile.business = new BusinessProfile();
     this.profile.business.legalName = 'Fire-Alert Oakville';
@@ -79,6 +84,26 @@ export class DashboardComponent implements OnInit {
     this.employees.push(new Employee('Tyler Girloy','Field Technician'));
 
     this.codes = ['L6M 3C3', 'L2M 8N9', 'L2B 8N9', 'L2C 8N9', 'L2G 8N9', 'L2R 8N9'];
+
+    this.dashboardService
+        .getMenuItems("dashboard-menu1")
+        .subscribe((items:string[]) => {
+          this.menuItems1 = items;
+    });
+
+    this.dashboardService
+        .getMenuItems("dashboard-menu2")
+        .subscribe((items:string[]) => {
+          this.menuItems2 = items;
+    });
+
+    this.dashboardService
+        .getMenuAuthItems("dashboard-menu3")
+        .subscribe((items:string[]) => {
+          this.menuItems3 = items;
+    });
+
+    this.showAboutMe = !this.dashboardService.isFranchaisee();
   }
 
   toggleSidebar(){

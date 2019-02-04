@@ -53,5 +53,19 @@
   "CELL_PHONE_LABEL": "Cell Phone",
   "HOME_PHONE_LABEL": "Home Phone",
   "EMAIL_LABEL": "Email",
-  "WEBSITE_LABEL": "Website"
+  "WEBSITE_LABEL": "Website",
+  "CALLS_LABEL": "Calls",
+  "LEADS_LABEL": "Leads",
+  "WORK ORDERS_LABEL": "Work Orders",
+  "JOBS_LABEL": "Jobs",
+  "CUSTOMERS_LABEL": "Customers",
+  "SCHEDULE_LABEL": "Schedule",
+  "INVOICES_LABEL": "Invoices",
+  "REPORTS_LABEL": "Reports",  
+  "TOOLS_LABEL":"Tools",
+  "DIRECTORY_LABEL":"Directory",
+  "NEWS_MENU_LABEL":"News",
+  "FRANCHISEES_LABEL":"Franchisees",
+  "USERS_LABEL": "Users",
+  "CORPORATE_LABEL": "Corporate"
 }

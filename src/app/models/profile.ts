@@ -3,6 +3,7 @@ export class Profile {
     personal: PesonalProfile;
     name:string;
     type:string;
+    location:string;
 }
 
 export class BusinessProfile{

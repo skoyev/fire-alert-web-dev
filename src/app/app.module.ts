@@ -99,8 +99,8 @@ import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
     HeroService,
     MessageService,
     I18nService,
-    // provider used to create fake backend
-    fakeBackendProvider    
+    // provider used to create fake backend for non prod env.
+    !environment.production ? fakeBackendProvider : []        
   ],
   bootstrap: [AppComponent]
 })

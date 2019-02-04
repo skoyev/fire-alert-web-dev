@@ -21,6 +21,7 @@ export class ProfileComponentNew implements OnInit {
   @Input() profile:Profile;
   @Input() employees:Employee[];
   @Input() codes:string[];
+  @Input() showAboutMe:boolean;
 
   shouldShowProfile:boolean = true;
 

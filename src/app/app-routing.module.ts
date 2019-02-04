@@ -16,6 +16,66 @@ const routes: Routes = [
     canActivate: [HeroesGuard]
   },
   {
+    path: 'invoices',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'calls',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },
+  {
+    path: 'leads',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },    
+  {
+    path: 'workorders',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'jobs',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'customers',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'schedule',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'invoices',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'reports',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'news_menu',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'tools',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
+    path: 'directory',
+    component: DashboardComponent,
+    canActivate: [HeroesGuard]
+  },  
+  {
     path: 'detail/:id',
     component: HeroDetailComponent,
     canActivate: [SelectedHeroGuard]

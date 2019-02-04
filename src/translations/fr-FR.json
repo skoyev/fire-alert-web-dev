@@ -51,5 +51,19 @@
   "HOME_PHONE_LABEL": "Home Phone Fr",
   "EMAIL_LABEL": "Email Fr",
   "WEBSITE_LABEL": "Website Fr",
-  "ADDRESS_LABEL": "Address Fr"
+  "ADDRESS_LABEL": "Address Fr",
+  "CALLS_LABEL": "Calls Fr",
+  "LEADS_LABEL": "Leads Fr",
+  "WORK ORDERS_LABEL": "Work Orders Fr",
+  "JOBS_LABEL": "Jobs Fr",
+  "CUSTOMERS_LABEL": "Customers Fr",
+  "SCHEDULE_LABEL": "Schedule Fr",
+  "INVOICES_LABEL": "Invoices Fr",
+  "REPORTS_LABEL": "Reports Fr",
+  "TOOLS_LABEL":"Tools Fr",
+  "DIRECTORY_LABEL":"Directory Fr",
+  "NEWS_MENU_LABEL":"News Fr",
+  "FRANCHISEES_LABEL":"Franchisees Fr",
+  "USERS_LABEL": "Users Fr",
+  "CORPORATE_LABEL": "Corporate Fr"
 }

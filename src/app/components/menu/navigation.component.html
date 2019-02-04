@@ -5,8 +5,31 @@
       <strong>FA</strong>
   </div>
 
-  <ul class="list-unstyled components">
-        <li [ngClass]="isActive('Dashboard') ? 'active' : ''">
+    <ul class="list-unstyled components" style="padding-left:20px;">
+        <li *ngFor="let menuItem of menuItems1" [ngClass]="isActive(menuItem) ? 'active' : ''">
+            <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+                {{(menuItem + '_LABEL').trim()|uppercase|translate}}
+            </a>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled components" style="padding-left:20px;">
+            <li *ngFor="let menuItem of menuItems2" [ngClass]="isActive(menuItem) ? 'active' : ''">
+                <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+                    {{(menuItem + '_LABEL').trim()|uppercase|translate}}
+                </a>
+            </li>
+    </ul>
+
+    <ul class="list-unstyled components" style="padding-left:20px; border-bottom:none">
+            <li *ngFor="let menuItem of menuItems3" [ngClass]="isActive(menuItem) ? 'active' : ''">
+                <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+                    {{(menuItem + '_LABEL').trim()|uppercase|translate}}
+                </a>
+            </li>
+    </ul>
+
+    <!--li [ngClass]="isActive('Dashboard') ? 'active' : ''">
                 <a href="#" routerLink="/dashboard" (click)="setActive('Dashboard')">
                     <i class="fas fa-home"></i>
                     Dashboard
@@ -100,6 +123,6 @@
                      <i class="fas fa-paper-plane"></i>
                      Directory
                  </a>
-             </li>            
-    </ul>     
+             </li-->           
+         
 </nav>

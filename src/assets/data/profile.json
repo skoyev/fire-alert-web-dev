@@ -1,0 +1,58 @@
+[
+    {
+        "id":1,
+        "name":"Vanessa Houle",
+        "type":"Owner",
+        "location":"Fire Alert Oakville",
+        "business":{
+            "legalName":"Fire-Alert Oakville",
+            "businessRegNum":"11091122Ontario",
+            "ownership":100,
+            "agrStartDate":"01 December 2018",
+            "agrRenewalDate":"01 December 2023",
+            "royaltyFee":4,
+            "marketingFee":2,
+            "taxes":"HST"
+        },
+        "personal":{
+            "firstName":"Vanessa",
+            "lastName":"Houle",
+            "gender":"Female",
+            "age":35,
+            "birthday":"01 July 1984",
+            "homePhone":"905.847.7333",
+            "cellPhone":"905.847.7334",
+            "address":"3363 Regal Rd. Burlington, ON L7N 1LP",
+            "email":"vanessa@fire-alert.ca",
+            "website":"https://fire-alert.ca/franchaise/oakville"
+        }
+    },
+    {
+        "id":2,
+        "name":"Sylvain Houle",
+        "type":"Owner",
+        "location":"Fire Alert Oakville",
+        "business":{
+            "legalName":"Fire-Alert Oakville",
+            "businessRegNum":"11091123Ontario",
+            "ownership":100,
+            "agrStartDate":"01 December 2018",
+            "agrRenewalDate":"01 December 2023",
+            "royaltyFee":4,
+            "marketingFee":2,
+            "taxes":"HST"
+        },
+        "personal":{
+            "firstName":"Sylvain",
+            "lastName":"Houle",
+            "gender":"Male",
+            "age":34,
+            "birthday":"01 July 1984",
+            "homePhone":"905.847.7333",
+            "cellPhone":"905.847.7334",
+            "address":"3363 Regal Rd. Burlington, ON L7N 1LP",
+            "email":"vanessa@fire-alert.ca",
+            "website":"https://fire-alert.ca/franchaise/oakville"
+        }
+    }
+]

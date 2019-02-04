@@ -15,7 +15,7 @@
                     </div>
                     <div class="row">
                         <span style="margin-left: 20px">
-                            Fire Alert Oakville
+                                {{profile.location}}
                         </span>                        
                     </div>
                 </div>        
@@ -23,7 +23,7 @@
     </div>
     <div class="col-4">   
         <ul>
-            <li>
+            <li *ngIf="showAboutMe">
                 <a [ngClass]="{selected: shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, true)">
                         <i class="fas fa-th-list"></i>
                         {{'ABOUT_ME_LABEL'|translate}}
@@ -38,10 +38,11 @@
         </ul>     
     </div>
     <div style="width: 100%">
-        <app-profile-personal-cmp [profile]="profile" *ngIf="shouldShowProfile"></app-profile-personal-cmp>
+        <app-profile-personal-cmp [profile]="profile" *ngIf="showAboutMe && shouldShowProfile"></app-profile-personal-cmp>
         <app-profile-business-cmp [profile]="profile" 
                                   [employees]="employees" 
                                   [codes]="codes"
+                                  [showAboutMe]="showAboutMe"
                                   *ngIf="!shouldShowProfile">
         </app-profile-business-cmp>
     </div>

@@ -21,6 +21,7 @@ export class ProfileBusinessComponent implements OnInit {
   @Input() profile:Profile;
   @Input() employees:Employee[];
   @Input() codes:string[];
+  @Input() showAboutMe:boolean;
   
   constructor(private store: Store<fromReducers.hero.State>) {}
 
