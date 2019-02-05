@@ -3,12 +3,51 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import users from '../../assets/data/user.json'
+import profile from '../../assets/data/profile.json'
+import profileUser from '../../assets/data/profile-user.json'
+import franchaiseeUser from '../../assets/data/franchaisee-user.json'
+import franchaisee from '../../assets/data/franchaisee.json'
+import employeeFranchaisee from '../../assets/data/employee-franchaisee.json'
+import employee from '../../assets/data/employee.json'
  
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
  
     constructor() {         
         localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    getProfileByUserID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
+        let urlParts = request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]);
+        let matchedProfileUser = profileUser.filter(r => r.user_id == id);
+        let matchedProfile = matchedProfileUser.length ?
+                profile.filter(p => p.id == matchedProfileUser[0].profile_id) : null;
+
+        return of(new HttpResponse({ 
+            status: 200, body: matchedProfile.length ? matchedProfile[0] : '' }));
+    }
+
+    getFranchaiseeByUserID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
+        let urlParts = request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]);
+        let matchedFranchaiseeUser = franchaiseeUser.filter(r => r.user_id == id);
+        let matchedFranchaisee = matchedFranchaiseeUser.length ?
+                franchaisee.filter(f => f.id == matchedFranchaiseeUser[0].franchaisee_id) : null;
+
+        return of(new HttpResponse({ 
+            status: 200, body: matchedFranchaisee.length ? matchedFranchaisee[0] : '' }));
+    }
+
+    getEmployeeByFranchaiseeID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
+        let urlParts = request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]);        
+        let matchedEmployeeFranchaisee = employeeFranchaisee.filter(ef => ef.franchaisee_id == id)
+                                                            .map(ef => ef.employee_id);
+        let matchedEmployees = matchedEmployeeFranchaisee.length ?
+                employee.filter(e => matchedEmployeeFranchaisee.includes(e.id)) : [];
+        return of(new HttpResponse({ 
+                    status: 200, body: matchedEmployees.length ? matchedEmployees : [] }));
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -43,6 +82,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return throwError({ error: { message: 'Username or password is incorrect' } });
                 }
             }
+
+            // get profile
+            if (request.url.match(/\/profile\/\d+$/) && request.method === 'GET') {
+                return this.getProfileByUserID(request);
+            }
+
+            // get franchaisee by user id
+            if (request.url.startsWith('/api/franchaisee/user/') 
+                    && request.method === 'GET') {
+                return this.getFranchaiseeByUserID(request);
+            }       
+            
+            // get employees by franchaisee id
+            if (request.url.startsWith('/api/employee/franchaisee/') 
+                    && request.method === 'GET') {
+                return this.getEmployeeByFranchaiseeID(request);
+            }            
  
             // get users
             if (request.url.endsWith('/users') && request.method === 'GET') {

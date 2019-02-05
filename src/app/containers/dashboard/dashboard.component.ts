@@ -12,6 +12,8 @@ import { DashboardService } from '@appServices/dashboard.service';
 import { filter } from 'rxjs/operators';
 import { Profile, BusinessProfile, PesonalProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
+import { AuthenticationService } from '../../core';
+import { Franchaisee } from '@appModels/franchaisee';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
   private showProfile: boolean = false;
 
   constructor(private store: Store<fromReducers.hero.State>,
+              private authService: AuthenticationService,
               private dashboardService: DashboardService) {}
 
   ngOnInit() {
@@ -51,37 +54,9 @@ export class DashboardComponent implements OnInit {
     })
     */
 
-    // TODO: Dummy data
-    this.profile = new Profile();
-    this.profile.name = 'Sylvan Houle';
-    this.profile.type = 'Owner'
-    this.profile.location = 'Fire Alert Oakville';
-
-    this.profile.business = new BusinessProfile();
-    this.profile.business.legalName = 'Fire-Alert Oakville';
-    this.profile.business.businessRegNum = '11091122Ontario';
-    this.profile.business.ownership = 100;
-    this.profile.business.agrStartDate = '01 December 2018';
-    this.profile.business.agrRenewalDate = '01 December 2023';
-    this.profile.business.royaltyFee = 4;
-    this.profile.business.marketingFee = 2;
-    this.profile.business.taxes = 'HST';
-
-    this.profile.personal = new PesonalProfile();
-    this.profile.personal.firstName = 'Sylvain';
-    this.profile.personal.lastName  = 'Houle';
-    this.profile.personal.gender    = 'Male';
-    this.profile.personal.age       =  34;
-    this.profile.personal.birthday  = '01 July 1984';
-    this.profile.personal.homePhone = '905.847.7333';
-    this.profile.personal.cellPhone = '647.515.8328';
-    this.profile.personal.address   = '3363 Regal Rd. Burlington, ON L7N 1LP';
-    this.profile.personal.email     = 'sylvain@fire-alert.ca';
-    this.profile.personal.website   = 'https://fire-alert.ca/franchaise/oakville';
-
-    this.employees = new Array<Employee>();
-    this.employees.push(new Employee('Duncan Long','Field Technician'));
-    this.employees.push(new Employee('Tyler Girloy','Field Technician'));
+    //this.employees = new Array<Employee>();
+    //this.employees.push(new Employee('Duncan Long','Field Technician'));
+    //this.employees.push(new Employee('Tyler Girloy','Field Technician'));
 
     this.codes = ['L6M 3C3', 'L2M 8N9', 'L2B 8N9', 'L2C 8N9', 'L2G 8N9', 'L2R 8N9'];
 
@@ -104,6 +79,22 @@ export class DashboardComponent implements OnInit {
     });
 
     this.showAboutMe = !this.dashboardService.isFranchaisee();
+
+    this.dashboardService
+        .fetchProfile(this.authService.credentials)
+        .subscribe(p => this.profile = p);
+
+    // load employee per franchaisee
+    if(this.showAboutMe) {
+      this.dashboardService
+          .findFranchaiseeByUserID(this.authService.credentials.id)
+          .pipe(filter(d => d != null))
+          .subscribe((fr:Franchaisee) => {
+            this.dashboardService
+                .fetchEmployeesByFranchaisee(fr.id)
+                .subscribe(e => this.employees = e);  
+          });
+    }
   }
 
   toggleSidebar(){

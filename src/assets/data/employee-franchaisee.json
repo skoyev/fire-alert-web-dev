@@ -1,0 +1,5 @@
+[
+    {"employee_id":1, "franchaisee_id":1},
+    {"employee_id":2, "franchaisee_id":1},
+    {"employee_id":3, "franchaisee_id":2}
+]

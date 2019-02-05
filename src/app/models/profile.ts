@@ -1,4 +1,5 @@
 export class Profile {
+    id:number;
     business: BusinessProfile;
     personal: PesonalProfile;
     name:string;

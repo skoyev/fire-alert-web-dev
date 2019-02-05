@@ -5,6 +5,7 @@ import { tap, catchError } from 'rxjs/operators';
 
 export interface Credentials {
   // Customize received credentials here
+  id:number;
   username: string;
   token: string;
   firstName: string;

@@ -4,6 +4,7 @@ import { Credentials, LoginContext } from './authentication.service';
 
 export class MockAuthenticationService {
   credentials: Credentials | null = {
+    id: 1,
     username: 'test',
     token: '123',
     firstName: 'First',
@@ -12,6 +13,7 @@ export class MockAuthenticationService {
 
   login(context: LoginContext): Observable<Credentials> {
     return of({
+      id: 1,
       username: context.username,
       firstName: '',
       lastName: '',

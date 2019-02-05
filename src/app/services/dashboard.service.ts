@@ -7,9 +7,14 @@ import { Subscription, Subject } from 'rxjs';
 import { AuthenticationService } from '../core';
 import { Credentials } from '../core';
 import menu from '../../assets/data/menu.json';
+import { Profile } from '@appModels/profile';
+import { Employee } from '@appModels/employee';
+import { Franchaisee } from '@appModels/franchaisee';
 
 @Injectable()
 export class DashboardService {
+  private dashboardUrl:string = '/api/profile';
+  private employeeUrl:string = '/api/employee';
   private dashboardSubscription = new Subject<boolean>();
 
   constructor(private http: HttpClient,
@@ -51,6 +56,25 @@ export class DashboardService {
     }  
 
     return credentials.roles
-                 .filter(r => r.name == 'franchaisee').length == 1;
+                 .filter(r => 
+                    r.name == 'franchaisee').length == 1;
+  }
+
+  fetchProfile(credential:Credentials) : Observable<Profile> {
+    if(!credential) {
+      return of(null);
+    }
+    const url = `${this.dashboardUrl}/${credential.id}`;
+    return this.http.get<Profile>(url).pipe(
+      tap(p => console.log(`fetched profile id=${p.id}`)),
+      catchError(() => of(null)));    
+  }
+
+  fetchEmployeesByFranchaisee(frID:number) : Observable<Employee[]> {    
+    return this.http.get<Employee[]>(`${this.employeeUrl}/franchaisee/${frID}`);      
+  }
+
+  findFranchaiseeByUserID(userID:number):Observable<Franchaisee> {
+    return this.http.get<Franchaisee>(`/api/franchaisee/user/${userID}`);
   }
 }
