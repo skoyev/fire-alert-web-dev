@@ -45,11 +45,11 @@ export class DashboardService {
 
     return of(
       credentials.roles
-                 .filter(r => r.name == 'franchaisee').length == 1 
-                 ? menu[type] : []);
+                 .filter(r => r.name == 'franchaisor')
+                 .length ? menu[type] : []);
   }
 
-  isFranchaisee():boolean {
+  isFranchaisor():boolean {
     let credentials:Credentials = null;
     if(this.authenticationService.isAuthenticated()){
       credentials = this.authenticationService.credentials;
@@ -57,7 +57,7 @@ export class DashboardService {
 
     return credentials.roles
                  .filter(r => 
-                    r.name == 'franchaisee').length == 1;
+                    r.name == 'franchaisor').length == 1;
   }
 
   fetchProfile(credential:Credentials) : Observable<Profile> {

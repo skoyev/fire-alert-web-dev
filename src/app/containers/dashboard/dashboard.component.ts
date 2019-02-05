@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
           this.menuItems3 = items;
     });
 
-    this.showAboutMe = !this.dashboardService.isFranchaisee();
+    this.showAboutMe = !this.dashboardService.isFranchaisor();
 
     this.dashboardService
         .fetchProfile(this.authService.credentials)
