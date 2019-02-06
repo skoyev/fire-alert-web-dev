@@ -4,7 +4,8 @@ import { NavigationExtras } from '@angular/router';
 export enum RouterActionTypes {
   go = '[Router] Go',
   back = '[Router] Back',
-  forward = '[Router] Forward'
+  forward = '[Router] Forward',
+  createnewteam = '[Router] Create New Team'
 }
 
 export class Go implements Action {
@@ -16,6 +17,10 @@ export class Go implements Action {
       extras?: NavigationExtras;
     }
   ) {}
+}
+
+export class CreateNewTeam implements Action {
+  readonly type = RouterActionTypes.createnewteam;
 }
 
 export class Back implements Action {

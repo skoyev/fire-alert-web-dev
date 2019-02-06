@@ -22,6 +22,7 @@ import { SearchEffects } from '@appStore/effects/search.effects';
 import { RouterStateUrl } from '@appStore/router';
 
 export interface State {
+  employee: fromReducers.employee.State;
   hero: fromReducers.hero.State;
   search: fromReducers.search.State;
   user: fromReducers.user.State;
@@ -29,6 +30,7 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
+  employee: fromReducers.employee.reducer,
   hero: fromReducers.hero.reducer,
   search: fromReducers.search.reducer,
   user: fromReducers.user.reducer,

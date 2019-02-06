@@ -14,6 +14,8 @@ import { Profile, BusinessProfile, PesonalProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { AuthenticationService } from '../../core';
 import { Franchaisee } from '@appModels/franchaisee';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeModal } from '@appComponents/modal/employee.modail.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,9 +35,12 @@ export class DashboardComponent implements OnInit {
   topHeroes$: Observable<Hero[]>; 
   private showSidebar: boolean = false;
   private showProfile: boolean = false;
+  private showAboutMyBusiness: boolean = false;
 
   constructor(private store: Store<fromReducers.hero.State>,
+              private emplStore: Store<fromReducers.employee.State>,
               private authService: AuthenticationService,
+              private modalService: NgbModal,
               private dashboardService: DashboardService) {}
 
   ngOnInit() {
@@ -44,7 +49,17 @@ export class DashboardComponent implements OnInit {
     this.store.select(fromSelectors.getShowProfile)        
         .subscribe(r => {
           this.showProfile = r;          
-    })
+    });
+
+    this.emplStore        
+        .select(fromSelectors.getCreate)
+        .pipe(filter(e => e != null))
+        .subscribe(e => {
+          console.log('getCreateNewEmployee');
+
+          const modalRef = this.modalService.open(EmployeeModal);
+          modalRef.componentInstance.name = 'World Test';          
+        });
 
     /*
     this.store.select(fromSelectors.getSearchStore)
@@ -95,6 +110,8 @@ export class DashboardComponent implements OnInit {
                 .subscribe(e => this.employees = e);  
           });
     }
+
+    this.showAboutMyBusiness = !this.dashboardService.isEmployee();
   }
 
   toggleSidebar(){

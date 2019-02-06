@@ -54,5 +54,24 @@
             "email":"sylvain@fire-alert.ca",
             "website":"https://fire-alert.ca/franchaise/oakville"
         }
+    },
+    {
+        "id":3,
+        "name":"Yvan Yvan",
+        "type":"Employee",
+        "location":"Fire Alert Oakville",
+        "business":{},
+        "personal":{
+            "firstName":"Yvan",
+            "lastName":"Yvan",
+            "gender":"Female",
+            "age":34,
+            "birthday":"15 July 1984",
+            "homePhone":"905.847.7333",
+            "cellPhone":"905.847.7334",
+            "address":"12 Spears Rd. Burlington, ON L7N 1LP",
+            "email":"yvan@fire-alert.ca",
+            "website":"https://fire-alert.ca/franchaise/oakville"
+        }
     }
 ]

@@ -11,29 +11,18 @@ import * as fromReducers from '@appStore/reducers';
 import { DashboardService } from '@appServices/dashboard.service';
 import { Profile, BusinessProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-profile-cmp',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-employee-modal',
+  templateUrl: './employee.modal.component.html',
+  styleUrls: ['./employee.modal.component.css']
 })
-export class ProfileComponentNew implements OnInit {
-  @Input() profile:Profile;
-  @Input() employees:Employee[];
-  @Input() codes:string[];
-  @Input() showAboutMe:boolean;
-  @Input() showAboutMyBusiness:boolean;
+export class EmployeeModal implements OnInit {
+  @Input() name;
 
-  shouldShowProfile:boolean = true;
-
-  constructor(private store: Store<fromReducers.hero.State>) {}
+  constructor(private store: Store<fromReducers.hero.State>,
+              public activeModal: NgbActiveModal) {}
 
   ngOnInit() {}
-
-  showPersonalProfile(event:any, shouldShowProfile:boolean){
-    event.preventDefault();
-    event.stopPropagation();    
-
-    this.shouldShowProfile = shouldShowProfile;
-  }
 }

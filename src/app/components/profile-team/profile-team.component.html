@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-6">
-        <h3 class="red team">{{'TEAM_LABEL'|translate}} <a class="create-team" href="#">Create New</a></h3>
+        <h3 class="red team">{{'TEAM_LABEL'|translate}} 
+            <a class="create-team" (click)="onCreateNewTeam($event, content)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</a>
+        </h3>
         <div *ngFor="let employee of employees; let i = index;" class="row line-space">            
             <div class="col-4">
                 <span>{{employee.name}}</span>                

@@ -10,6 +10,7 @@ import menu from '../../assets/data/menu.json';
 import { Profile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { Franchaisee } from '@appModels/franchaisee';
+import { EMPLOYEE, FRANCHAISOR } from '@appModels/constant';
 
 @Injectable()
 export class DashboardService {
@@ -45,7 +46,7 @@ export class DashboardService {
 
     return of(
       credentials.roles
-                 .filter(r => r.name == 'franchaisor')
+                 .filter(r => r.name == FRANCHAISOR)
                  .length ? menu[type] : []);
   }
 
@@ -57,7 +58,18 @@ export class DashboardService {
 
     return credentials.roles
                  .filter(r => 
-                    r.name == 'franchaisor').length == 1;
+                    r.name == FRANCHAISOR).length == 1;
+  }
+
+  isEmployee():boolean {
+    let credentials:Credentials = null;
+    if(this.authenticationService.isAuthenticated()){
+      credentials = this.authenticationService.credentials;
+    }  
+
+    return credentials.roles
+                 .filter(r => 
+                    r.name == EMPLOYEE).length == 1;
   }
 
   fetchProfile(credential:Credentials) : Observable<Profile> {

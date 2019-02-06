@@ -67,5 +67,8 @@
   "NEWS_MENU_LABEL":"News",
   "FRANCHISEES_LABEL":"Franchisees",
   "USERS_LABEL": "Users",
-  "CORPORATE_LABEL": "Corporate"
+  "CORPORATE_LABEL": "Corporate",
+  "CREATE_NEW_TEAM_LABEL": "Create New",
+  "CREATE_EMPLOYEE_LABEL": "NEW EMPLOYEE",
+  "CREATE_TEAM_LABEL": "NEW TEAM"
 }
