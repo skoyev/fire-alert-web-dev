@@ -2,9 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { Hero } from '@appModels/hero';
-import { HeroService } from '@appServices/hero.service';
-
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 
@@ -12,17 +9,30 @@ import { DashboardService } from '@appServices/dashboard.service';
 import { Profile, BusinessProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-employee-modal',
-  templateUrl: './employee.modal.component.html',
-  styleUrls: ['./employee.modal.component.css']
+  selector: 'app-team-modal',
+  templateUrl: './team.modal.component.html',
+  styleUrls: ['./team.modal.component.css']
 })
-export class EmployeeModal implements OnInit {
+export class TeamModal implements OnInit {
   @Input() name;
+  
+  teamForm = new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4)
+    ])
+  });
 
   constructor(private store: Store<fromReducers.hero.State>,
               public activeModal: NgbActiveModal) {}
 
   ngOnInit() {}
+
+  onCreateTeam() {
+    this.activeModal.dismiss();
+    console.log(this.teamForm.controls.name.value);
+  }
 }

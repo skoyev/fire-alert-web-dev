@@ -16,6 +16,7 @@ import { EMPLOYEE, FRANCHAISOR } from '@appModels/constant';
 export class DashboardService {
   private dashboardUrl:string = '/api/profile';
   private employeeUrl:string = '/api/employee';
+  
   private dashboardSubscription = new Subject<boolean>();
 
   constructor(private http: HttpClient,
@@ -70,6 +71,10 @@ export class DashboardService {
     return credentials.roles
                  .filter(r => 
                     r.name == EMPLOYEE).length == 1;
+  }
+
+  addEmployee (employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.employeeUrl, employee).pipe();
   }
 
   fetchProfile(credential:Credentials) : Observable<Profile> {

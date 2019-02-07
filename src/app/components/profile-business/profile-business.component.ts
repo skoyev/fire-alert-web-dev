@@ -19,7 +19,7 @@ import { Employee } from '@appModels/employee';
 })
 export class ProfileBusinessComponent implements OnInit {
   @Input() profile:Profile;
-  @Input() employees:Employee[];
+  @Input() employees:Observable<Employee[]>;
   @Input() codes:string[];
   @Input() showAboutMe:boolean;
   

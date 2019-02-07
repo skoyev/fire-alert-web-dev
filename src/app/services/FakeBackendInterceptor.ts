@@ -50,6 +50,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     status: 200, body: matchedEmployees.length ? matchedEmployees : [] }));
     }
 
+    createEmployee(request: HttpRequest<any>) : Observable<HttpEvent<any>> {        
+        let urlParts = request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]);        
+        let employee = {"name" : request.body.name, "type" : request.body.type};
+        /*
+        let matchedEmployeeFranchaisee = employeeFranchaisee.filter(ef => ef.franchaisee_id == id)
+                                                            .map(ef => ef.employee_id);
+        let matchedEmployees = matchedEmployeeFranchaisee.length ?
+                employee.filter(e => matchedEmployeeFranchaisee.includes(e.id)) : [];
+        */
+        return of(new HttpResponse({status: 200, body:{}}));
+    }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
         let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
@@ -100,6 +113,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return this.getEmployeeByFranchaiseeID(request);
             }            
  
+            // create employee
+            if (request.url.startsWith('/api/employee') 
+                    && request.method === 'POST') {
+                return this.createEmployee(request);
+            }            
+
             // get users
             if (request.url.endsWith('/users') && request.method === 'GET') {
                 // check for fake auth token in header and return users if valid, this security is implemented server side in a real application

@@ -68,7 +68,10 @@
   "FRANCHISEES_LABEL":"Franchisees",
   "USERS_LABEL": "Users",
   "CORPORATE_LABEL": "Corporate",
-  "CREATE_NEW_TEAM_LABEL": "Create New",
+  "CREATE_NEW_TEAM_LABEL": "New Team",
   "CREATE_EMPLOYEE_LABEL": "NEW EMPLOYEE",
-  "CREATE_TEAM_LABEL": "NEW TEAM"
+  "CREATE_TEAM_LABEL": "NEW TEAM",
+  "CREATE_NEW_EMPLOYEE_LABEL": "New Employee",
+  "CREATE_LABEL": "Create",
+  "CANCEL_LABEL": "Cancel"
 }

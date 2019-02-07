@@ -19,10 +19,6 @@ export class Go implements Action {
   ) {}
 }
 
-export class CreateNewTeam implements Action {
-  readonly type = RouterActionTypes.createnewteam;
-}
-
 export class Back implements Action {
   readonly type = RouterActionTypes.back;
 }

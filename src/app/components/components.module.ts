@@ -17,7 +17,8 @@ import { ProfileBusinessComponent } from './profile-business/profile-business.co
 import { ProfilePersonalComponent } from './profile-personal/profile-personal.component';
 import { ProfileTeamComponent } from './profile-team/profile-team.component';
 import { TerritoryComponent } from './territory/territory.component';
-import { EmployeeModal } from './modal/employee.modail.component';
+import { EmployeeModal } from './modal/employee/employee.modal.component';
+import { TeamModal } from './modal/team/team.modal.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { EmployeeModal } from './modal/employee.modail.component';
     ProfilePersonalComponent,
     ProfileTeamComponent,
     TerritoryComponent,
-    EmployeeModal
+    EmployeeModal,
+    TeamModal
   ],   
   exports: [
     ProfileComponentNew,
@@ -50,7 +52,8 @@ import { EmployeeModal } from './modal/employee.modail.component';
     ProfilePersonalComponent,
     ProfileTeamComponent,
     TerritoryComponent,
-    EmployeeModal
+    EmployeeModal,
+    TeamModal
   ],  
   providers: [    
     AuthenticationService,
@@ -59,6 +62,6 @@ import { EmployeeModal } from './modal/employee.modail.component';
       useClass: CustomRouterStateSerializer
     }
   ],  
-  entryComponents: [EmployeeModal]
+  entryComponents: [EmployeeModal, TeamModal]
 })
 export class ComponentsModule {}

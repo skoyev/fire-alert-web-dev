@@ -5,7 +5,9 @@ import { Store, select } from '@ngrx/store';
 import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 import { Employee } from '@appModels/employee';
-import { Create } from '@appStore/actions/employee.actions';
+import { ShowNewEmployeeModal } from '@appStore/actions/employee.actions';
+import { Team } from '@appModels/team';
+import { CreateTeam } from '@appStore/actions/team.actions';
 
 @Component({
   selector: 'app-profile-team-cmp',
@@ -13,17 +15,24 @@ import { Create } from '@appStore/actions/employee.actions';
   styleUrls: ['./profile-team.component.css']
 })
 export class ProfileTeamComponent implements OnInit {
-  @Input()  employees:Employee[];
+  @Input() employees:Observable<Employee[]>;
 
-  constructor(private emplStore: Store<fromReducers.employee.State>) {}
+  constructor(private emplStore: Store<fromReducers.employee.State>,
+              private teamStore: Store<fromReducers.team.State>) {}
 
   ngOnInit() {
   }
 
-  onCreateNewTeam = (event:any, content:any) => {
+  onCreateNewTeam = (event:any) => {
     event.preventDefault();
     event.stopPropagation(); 
-    this.emplStore.dispatch(new Create(new Employee));
+    this.teamStore.dispatch(new CreateTeam(new Team()));
+  }
+
+  onCreateNewEmployee = (event:any) => {
+    event.preventDefault();
+    event.stopPropagation(); 
+    this.emplStore.dispatch(new ShowNewEmployeeModal(true));
   }
 
   onEditEmployee = (event:any, employee:Employee) => {

@@ -15,7 +15,9 @@ import { Employee } from '@appModels/employee';
 import { AuthenticationService } from '../../core';
 import { Franchaisee } from '@appModels/franchaisee';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { EmployeeModal } from '@appComponents/modal/employee.modail.component';
+import { EmployeeModal } from '@appComponents/modal/employee/employee.modal.component';
+import { TeamModal } from '@appComponents/modal/team/team.modal.component';
+import * as fromStore from '@appStore/index';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +27,7 @@ import { EmployeeModal } from '@appComponents/modal/employee.modail.component';
 })
 export class DashboardComponent implements OnInit {
   profile:Profile;
-  employees:Employee[];
+  employees:Observable<Employee[]>;
   codes:string[];
   menuItems1:string[];
   menuItems2:string[];
@@ -38,7 +40,9 @@ export class DashboardComponent implements OnInit {
   private showAboutMyBusiness: boolean = false;
 
   constructor(private store: Store<fromReducers.hero.State>,
+              private globalStore: Store<fromStore.State>,
               private emplStore: Store<fromReducers.employee.State>,
+              private teamStore: Store<fromReducers.team.State>,
               private authService: AuthenticationService,
               private modalService: NgbModal,
               private dashboardService: DashboardService) {}
@@ -51,16 +55,20 @@ export class DashboardComponent implements OnInit {
           this.showProfile = r;          
     });
 
+    // Create New Employee
     this.emplStore        
-        .select(fromSelectors.getCreate)
-        .pipe(filter(e => e != null))
-        .subscribe(e => {
-          console.log('getCreateNewEmployee');
+        .select(fromSelectors.getShowNewEmployeeModal)
+        .pipe(filter(e => e))
+        .subscribe(_ => this.modalService.open(EmployeeModal));
 
-          const modalRef = this.modalService.open(EmployeeModal);
+    // Create New Team
+    this.teamStore
+        .select(fromSelectors.getCreateTeam)
+        .pipe(filter(t => t != null))
+        .subscribe(t => {
+          const modalRef = this.modalService.open(TeamModal);
           modalRef.componentInstance.name = 'World Test';          
         });
-
     /*
     this.store.select(fromSelectors.getSearchStore)
         .pipe(filter(r => r != null))
@@ -68,10 +76,6 @@ export class DashboardComponent implements OnInit {
           //this.showProfile = true;          
     })
     */
-
-    //this.employees = new Array<Employee>();
-    //this.employees.push(new Employee('Duncan Long','Field Technician'));
-    //this.employees.push(new Employee('Tyler Girloy','Field Technician'));
 
     this.codes = ['L6M 3C3', 'L2M 8N9', 'L2B 8N9', 'L2C 8N9', 'L2G 8N9', 'L2R 8N9'];
 
@@ -101,17 +105,27 @@ export class DashboardComponent implements OnInit {
 
     // load employee per franchaisee
     if(this.showAboutMe) {
-      this.dashboardService
-          .findFranchaiseeByUserID(this.authService.credentials.id)
-          .pipe(filter(d => d != null))
-          .subscribe((fr:Franchaisee) => {
-            this.dashboardService
-                .fetchEmployeesByFranchaisee(fr.id)
-                .subscribe(e => this.employees = e);  
+      this.loadEmployees();
+
+      this.globalStore
+          .select(fromSelectors.getCreateEmployeeSuccess)
+          .pipe(filter(t => t))
+          .subscribe(_ => {
+            this.loadEmployees();
           });
     }
 
     this.showAboutMyBusiness = !this.dashboardService.isEmployee();
+  }
+
+  loadEmployees() {
+    this.dashboardService
+        .findFranchaiseeByUserID(this.authService.credentials.id)
+        .pipe(filter(d => d != null))
+        .subscribe((fr:Franchaisee) => {
+          this.employees = this.dashboardService
+                .fetchEmployeesByFranchaisee(fr.id).pipe()
+    });
   }
 
   toggleSidebar(){
