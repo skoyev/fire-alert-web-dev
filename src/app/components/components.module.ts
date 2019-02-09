@@ -19,6 +19,7 @@ import { ProfileTeamComponent } from './profile-team/profile-team.component';
 import { TerritoryComponent } from './territory/territory.component';
 import { EmployeeModal } from './modal/employee/employee.modal.component';
 import { TeamModal } from './modal/team/team.modal.component';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -60,7 +61,7 @@ import { TeamModal } from './modal/team/team.modal.component';
     {
       provide: RouterStateSerializer,
       useClass: CustomRouterStateSerializer
-    }
+    }   
   ],  
   entryComponents: [EmployeeModal, TeamModal]
 })

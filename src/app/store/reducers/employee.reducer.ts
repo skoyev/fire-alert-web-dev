@@ -8,13 +8,17 @@ import { Employee } from '@appModels/employee';
 export interface State {
     employee: Employee;
     showNewEmployeeModal: boolean; 
+    closeNewEmployeeModal: boolean;
     createEmployeeSuccess: boolean;
+    employeeDetectChanges: boolean;
 }
 
 export const initialState: State = {
     employee: null,
     showNewEmployeeModal: false,
-    createEmployeeSuccess: false
+    closeNewEmployeeModal: false,
+    createEmployeeSuccess: false,
+    employeeDetectChanges: false
 };
 
 export function reducer(state = initialState, action: EmployeeActions): State {
@@ -27,7 +31,7 @@ export function reducer(state = initialState, action: EmployeeActions): State {
 
     case EmployeeActionTypes.CreateEmployee:
       return {
-        ...state,
+        ...state,        
         employee: action.payload
       };
 
@@ -35,6 +39,18 @@ export function reducer(state = initialState, action: EmployeeActions): State {
       return {
         ...state,
         createEmployeeSuccess: action.payload
+    };
+
+    case EmployeeActionTypes.EmployeeDetectChanges:
+      return {
+        ...state,
+        employeeDetectChanges: action.payload
+    };
+
+    case EmployeeActionTypes.CloseNewEmployeeModal:
+      return {
+        ...state,
+        closeNewEmployeeModal: action.payload
     };
 
     default:

@@ -52,14 +52,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     createEmployee(request: HttpRequest<any>) : Observable<HttpEvent<any>> {        
         let urlParts = request.url.split('/');
-        let id = parseInt(urlParts[urlParts.length - 1]);        
-        let employee = {"name" : request.body.name, "type" : request.body.type};
-        /*
-        let matchedEmployeeFranchaisee = employeeFranchaisee.filter(ef => ef.franchaisee_id == id)
-                                                            .map(ef => ef.employee_id);
-        let matchedEmployees = matchedEmployeeFranchaisee.length ?
-                employee.filter(e => matchedEmployeeFranchaisee.includes(e.id)) : [];
-        */
+        let franchID = parseInt(urlParts[urlParts.length - 1]);        
+        let newEmplID = Math.max(... employee.map(e => e.id)) + 1;
+        let newEmployee = {"id": newEmplID, "name" : request.body.name, "type" : request.body.type};
+
+        if(franchID){
+            employee.push(newEmployee);
+            employeeFranchaisee.push({"employee_id":newEmplID, "franchaisee_id":franchID})
+            console.log(`Added a new employee with ID ${newEmployee.id} into Franchaisee - ${franchID}`)
+        }
+
         return of(new HttpResponse({status: 200, body:{}}));
     }
 

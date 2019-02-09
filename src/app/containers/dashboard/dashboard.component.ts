@@ -9,25 +9,27 @@ import * as fromSelectors from '@appStore/selectors';
 import * as fromReducers from '@appStore/reducers';
 
 import { DashboardService } from '@appServices/dashboard.service';
-import { filter } from 'rxjs/operators';
+import { filter, delay, tap } from 'rxjs/operators';
 import { Profile, BusinessProfile, PesonalProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { AuthenticationService } from '../../core';
 import { Franchaisee } from '@appModels/franchaisee';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeModal } from '@appComponents/modal/employee/employee.modal.component';
 import { TeamModal } from '@appComponents/modal/team/team.modal.component';
 import * as fromStore from '@appStore/index';
+import { of } from 'rxjs';
+import { EmployeeDetectChanges } from '@appStore/actions/employee.actions';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
   profile:Profile;
-  employees:Observable<Employee[]>;
+  employees:Employee[];
   codes:string[];
   menuItems1:string[];
   menuItems2:string[];
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit {
   private showSidebar: boolean = false;
   private showProfile: boolean = false;
   private showAboutMyBusiness: boolean = false;
+  private employeeModal:NgbActiveModal;
 
   constructor(private store: Store<fromReducers.hero.State>,
               private globalStore: Store<fromStore.State>,
@@ -59,7 +62,17 @@ export class DashboardComponent implements OnInit {
     this.emplStore        
         .select(fromSelectors.getShowNewEmployeeModal)
         .pipe(filter(e => e))
-        .subscribe(_ => this.modalService.open(EmployeeModal));
+        .subscribe(_ => this.employeeModal = this.modalService.open(EmployeeModal));
+
+    this.emplStore        
+        .select(fromSelectors.getCloseNewEmployeeModal)
+        .pipe(filter(e => e))
+        .subscribe(_ => {
+          if(this.employeeModal){
+            this.employeeModal.close()
+          }
+        });
+
 
     // Create New Team
     this.teamStore
@@ -123,8 +136,19 @@ export class DashboardComponent implements OnInit {
         .findFranchaiseeByUserID(this.authService.credentials.id)
         .pipe(filter(d => d != null))
         .subscribe((fr:Franchaisee) => {
-          this.employees = this.dashboardService
-                .fetchEmployeesByFranchaisee(fr.id).pipe()
+           /*          
+           this.employees = this.dashboardService
+                                .fetchEmployeesByFranchaisee(fr.id)
+                                .pipe(delay(5000), tap())
+            */
+          
+          this.dashboardService
+              .fetchEmployeesByFranchaisee(fr.id)
+              .pipe(filter(r => r && r.length > 0 ))
+              .subscribe(empls => {
+                this.employees = [...empls]
+                this.emplStore.dispatch(new EmployeeDetectChanges(true))
+              });                                  
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -15,11 +15,12 @@ import { Employee } from '@appModels/employee';
 @Component({
   selector: 'app-profile-cmp',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponentNew implements OnInit {
-  @Input() profile:Profile;
-  @Input() employees:Observable<Employee[]>;
+  @Input() profile:Profile = new Profile();
+  @Input() employees:Employee[];
   @Input() codes:string[];
   @Input() showAboutMe:boolean;
   @Input() showAboutMyBusiness:boolean;

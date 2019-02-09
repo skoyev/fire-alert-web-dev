@@ -9,6 +9,11 @@ export const getCreate = createSelector(
     (store: fromReducers.employee.State) => store.employee
 );
 
+export const getEmployeeDetectChanges = createSelector(
+    getCreateStore,
+    (store: fromReducers.employee.State) => store.employeeDetectChanges
+);
+
 export const getCreateEmployeeSuccess = createSelector(
     getCreateStore,
     (store: fromReducers.employee.State) => store.createEmployeeSuccess
@@ -17,6 +22,11 @@ export const getCreateEmployeeSuccess = createSelector(
 export const getShowNewEmployeeModal = createSelector(
   getCreateStore,
   (store: fromReducers.employee.State) => store.showNewEmployeeModal
+);
+
+export const getCloseNewEmployeeModal = createSelector(
+    getCreateStore,
+    (store: fromReducers.employee.State) => store.closeNewEmployeeModal
 );
 
 export const getCreateEmployee = createSelector(

@@ -1,7 +1,7 @@
 export class Profile {
     id:number;
-    business: BusinessProfile;
-    personal: PesonalProfile;
+    business: BusinessProfile = new BusinessProfile();
+    personal: PesonalProfile = new PesonalProfile();
     name:string;
     type:string;
     location:string;

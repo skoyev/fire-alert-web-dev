@@ -67,14 +67,13 @@ export class DashboardService {
     if(this.authenticationService.isAuthenticated()){
       credentials = this.authenticationService.credentials;
     }  
-
     return credentials.roles
                  .filter(r => 
                     r.name == EMPLOYEE).length == 1;
   }
-
-  addEmployee (employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.employeeUrl, employee).pipe();
+  
+  addEmployee (frID:number, employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(`${this.employeeUrl}/${frID}`, employee).pipe();
   }
 
   fetchProfile(credential:Credentials) : Observable<Profile> {

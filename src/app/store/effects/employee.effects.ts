@@ -10,23 +10,33 @@ import { DashboardService } from '@appServices/dashboard.service';
 import * as fromRouterActions from '@appStore/actions/router.actions';
 import { Store } from '@ngrx/store';
 import * as fromStore from '@appStore/index';
+import { AuthenticationService } from '../../core';
+import { Franchaisee } from '@appModels/franchaisee';
 
 @Injectable()
 export class EmployeeEffects {
     constructor(private actions$: Actions, 
                 private dashService: DashboardService,
+                private authService: AuthenticationService,
                 private globalStore: Store<fromStore.State>) {}
 
     @Effect()
     addEmployee$ = this.actions$.pipe(
       ofType(EmployeeActionTypes.CreateEmployee),
-      switchMap((action: CreateEmployee) =>
+      switchMap((action: CreateEmployee) =>                
         this.dashService
-          .addEmployee(action.payload)
-          .pipe(
-            map(_ => new CreateEmployeeSuccess(true)),
-            catchError(error => of(new EmployeeError(error)))
-          )
-      )
-    );
+            .addEmployee(action.frID, action.payload)
+            .pipe(map(_ => new CreateEmployeeSuccess(true)),
+                  catchError(error => of(new EmployeeError(error))        
+
+        /*
+        this.dashService
+            .findFranchaiseeByUserID(this.authService.credentials.id)            
+            .subscribe((f:Franchaisee) => 
+              this.dashService
+                  .addEmployee(f.id, action.payload)
+                  .pipe(map(_ => new CreateEmployeeSuccess(true)),
+                  catchError(error => of(new EmployeeError(error)              
+        */
+    ))));
 }

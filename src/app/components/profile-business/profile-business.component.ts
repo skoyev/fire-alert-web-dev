@@ -15,11 +15,12 @@ import { Employee } from '@appModels/employee';
 @Component({
   selector: 'app-profile-business-cmp',
   templateUrl: './profile-business.component.html',
-  styleUrls: ['./profile-business.component.css']
+  styleUrls: ['./profile-business.component.css'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileBusinessComponent implements OnInit {
   @Input() profile:Profile;
-  @Input() employees:Observable<Employee[]>;
+  @Input() employees:Employee[];
   @Input() codes:string[];
   @Input() showAboutMe:boolean;
   

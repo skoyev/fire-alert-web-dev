@@ -11,7 +11,7 @@
         <div class="bold">{{'EMAIL_LABEL'|translate}}:</div>
         <div class="bold">{{'WEBSITE_LABEL'|translate}}:</div>
     </div>
-    <div class="col-9 line-space">
+    <div class="col-9 line-space" *ngIf="profile">
         <div>{{profile.personal.firstName}}</div>
         <div>{{profile.personal.lastName}}</div>
         <div>{{profile.personal.gender}}</div>

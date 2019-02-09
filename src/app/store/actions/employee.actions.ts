@@ -5,7 +5,19 @@ export enum EmployeeActionTypes {
     ShowNewEmployee = '[ShowNewEmployee] ShowNewEmployee',
     CreateEmployee = '[EmployeeAction] Create Employee',
     CreateEmployeeSuccess = '[CreateEmployeeSuccess] CreateEmployee Success',
-    EmployeeError = '[EmployeeError] Error'
+    EmployeeError = '[EmployeeError] Error',
+    EmployeeDetectChanges = '[EmployeeDetectChanges] Changes',
+    CloseNewEmployeeModal = '[CloseNewEmployeeModal] Close Employee Modal'
+}
+
+export class CloseNewEmployeeModal implements Action {
+  readonly type = EmployeeActionTypes.CloseNewEmployeeModal;
+  constructor(public payload: boolean) {}
+}
+
+export class EmployeeDetectChanges implements Action {
+  readonly type = EmployeeActionTypes.EmployeeDetectChanges;
+  constructor(public payload: boolean) {}
 }
 
 export class CreateEmployeeSuccess implements Action {
@@ -20,7 +32,7 @@ export class ShowNewEmployeeModal implements Action {
 
 export class CreateEmployee implements Action {
   readonly type = EmployeeActionTypes.CreateEmployee;
-  constructor(public payload: Employee) {}
+  constructor(public frID: number, public payload: Employee) {}
 }
 
 export class EmployeeError implements Action {
@@ -32,4 +44,6 @@ export type EmployeeActions =
   CreateEmployee | 
   ShowNewEmployeeModal |
   CreateEmployeeSuccess |
+  EmployeeDetectChanges |
+  CloseNewEmployeeModal |
   EmployeeError;

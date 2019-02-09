@@ -4,7 +4,7 @@
             <!--a class="create-team" (click)="onCreateNewTeam($event)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</a-->            
             <button style="margin-left:25px;" type="button" class="btn btn-outline-primary" (click)="onCreateNewTeam($event)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</button> 
         </h3>
-        <div *ngFor="let employee of employees | async; let i = index;" class="row line-space">            
+        <div *ngFor="let employee of employees; trackBy: id; let i = index;" class="row line-space">            
             <div class="col-4">
                 <span>{{employee.name}}</span>                
             </div>

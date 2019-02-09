@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoginModule } from './containers/login/login.module';
@@ -51,6 +51,7 @@ import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
 
 @NgModule({
   imports: [
+    NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -100,7 +101,8 @@ import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
     MessageService,
     I18nService,
     // provider used to create fake backend for non prod env.
-    !environment.production ? fakeBackendProvider : []        
+    !environment.production ? fakeBackendProvider : [],
+    NgbModule      
   ],
   bootstrap: [AppComponent]
 })
