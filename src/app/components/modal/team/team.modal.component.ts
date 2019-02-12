@@ -10,6 +10,11 @@ import { Profile, BusinessProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Team } from '@appModels/team';
+import { Franchaisee } from '@appModels/franchaisee';
+import { CloseNewTeamModal, CreateTeam, CreateTeamSuccess, ShowNewTeamModal } from '@appStore/actions/team.actions';
+import { AuthenticationService } from '../../../core';
+import * as fromStore from '@appStore/index';
 
 @Component({
   selector: 'app-team-modal',
@@ -26,13 +31,29 @@ export class TeamModal implements OnInit {
     ])
   });
 
-  constructor(private store: Store<fromReducers.hero.State>,
+  constructor(private store: Store<fromStore.State>,
+              private dashService: DashboardService,
+              private authService: AuthenticationService,              
               public activeModal: NgbActiveModal) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new ShowNewTeamModal(false));
+    this.store.dispatch(new CreateTeamSuccess(false));
+    this.store.dispatch(new CloseNewTeamModal(false))
+  }
 
   onCreateTeam() {
-    this.activeModal.dismiss();
-    console.log(this.teamForm.controls.name.value);
+    //this.activeModal.dismiss();
+    //console.log(this.teamForm.controls.name.value);
+
+    this.store.dispatch(new CloseNewTeamModal(true))
+    let name = this.teamForm.controls.name.value;
+
+    this.dashService
+        .findFranchaiseeByUserID(this.authService.credentials.id)
+        .subscribe((f:Franchaisee) => {
+          this.store.dispatch(new CreateTeam(f.id, new Team(0, name)))
+    });
+
   }
 }

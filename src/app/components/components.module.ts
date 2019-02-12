@@ -20,6 +20,7 @@ import { TerritoryComponent } from './territory/territory.component';
 import { EmployeeModal } from './modal/employee/employee.modal.component';
 import { TeamModal } from './modal/team/team.modal.component';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FranchiseesComponent } from './franchisees/franchisees.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
     ProfilePersonalComponent,
     ProfileTeamComponent,
     TerritoryComponent,
+    FranchiseesComponent,
     EmployeeModal,
     TeamModal
   ],   
@@ -54,7 +56,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
     ProfileTeamComponent,
     TerritoryComponent,
     EmployeeModal,
-    TeamModal
+    TeamModal,
+    FranchiseesComponent
   ],  
   providers: [    
     AuthenticationService,

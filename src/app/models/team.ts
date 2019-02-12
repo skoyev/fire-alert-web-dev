@@ -1,7 +1,13 @@
-export class Team {
-    name:string;
+import { Employee } from "./employee";
 
-    constructor(name?: string) { 
+export class Team {
+    id:number;
+    name:string;
+    employees: Employee[];
+
+    constructor(id?:number, name?: string, employees?: Employee[]) { 
+        this.id = id;
         this.name = name;
+        this.employees = employees;
     }
 }

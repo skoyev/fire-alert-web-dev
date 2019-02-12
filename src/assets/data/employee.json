@@ -1,5 +1,5 @@
 [
-    {"id":1, "name":"Duncan Long", "type": "Field Technician"},
-    {"id":2, "name":"Tyler Girloy", "type": "Field Technician"},
-    {"id":3, "name":"Employee", "type": "Field Technician"}
+    {"id":1, "name":"Duncan Long", "type": "Field Technician", "team_id" : 1},
+    {"id":2, "name":"Tyler Girloy", "type": "Field Technician", "team_id" : 1},
+    {"id":3, "name":"Employee", "type": "Field Technician", "team_id" : 1}
 ]

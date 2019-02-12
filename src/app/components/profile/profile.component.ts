@@ -11,6 +11,7 @@ import * as fromReducers from '@appStore/reducers';
 import { DashboardService } from '@appServices/dashboard.service';
 import { Profile, BusinessProfile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
+import { Team } from '@appModels/team';
 
 @Component({
   selector: 'app-profile-cmp',
@@ -20,7 +21,7 @@ import { Employee } from '@appModels/employee';
 })
 export class ProfileComponentNew implements OnInit {
   @Input() profile:Profile = new Profile();
-  @Input() employees:Employee[];
+  @Input() team:Team;
   @Input() codes:string[];
   @Input() showAboutMe:boolean;
   @Input() showAboutMyBusiness:boolean;

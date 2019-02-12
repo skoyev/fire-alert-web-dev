@@ -7,8 +7,9 @@ import profile from '../../assets/data/profile.json'
 import profileUser from '../../assets/data/profile-user.json'
 import franchaiseeUser from '../../assets/data/franchaisee-user.json'
 import franchaisee from '../../assets/data/franchaisee.json'
-import employeeFranchaisee from '../../assets/data/employee-franchaisee.json'
 import employee from '../../assets/data/employee.json'
+import team from '../../assets/data/team.json'
+import { Team } from '@appModels/team.js';
  
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -28,6 +29,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             status: 200, body: matchedProfile.length ? matchedProfile[0] : '' }));
     }
 
+    getFranchaiseeByCriteria(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
+        let urlParts = request.url.split('/');
+        let criteria = urlParts[urlParts.length - 1];
+        let criteriaRes = criteria ? criteria.split('=') : '';
+        let matchedFranchaisee = franchaisee.filter(
+            r => criteriaRes.length > 1 && criteriaRes[1].length > 0 ? 
+                    r.name.startsWith(criteriaRes[1]) : r );
+
+        return of(new HttpResponse({status: 200, body: matchedFranchaisee }));
+    }
+
     getFranchaiseeByUserID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
         let urlParts = request.url.split('/');
         let id = parseInt(urlParts[urlParts.length - 1]);
@@ -39,27 +51,70 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             status: 200, body: matchedFranchaisee.length ? matchedFranchaisee[0] : '' }));
     }
 
+    /*
     getEmployeeByFranchaiseeID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
         let urlParts = request.url.split('/');
         let id = parseInt(urlParts[urlParts.length - 1]);        
-        let matchedEmployeeFranchaisee = employeeFranchaisee.filter(ef => ef.franchaisee_id == id)
+        let matchedEmployeeFranchaisee = team.filter(ef => ef.franchaisee_id == id)
                                                             .map(ef => ef.employee_id);
         let matchedEmployees = matchedEmployeeFranchaisee.length ?
                 employee.filter(e => matchedEmployeeFranchaisee.includes(e.id)) : [];
         return of(new HttpResponse({ 
                     status: 200, body: matchedEmployees.length ? matchedEmployees : [] }));
     }
+    */
+
+    getTeamByFranchaiseeID(request: HttpRequest<any>) : Observable<HttpEvent<any>> {
+        let urlParts = request.url.split('/');
+        let id = parseInt(urlParts[urlParts.length - 1]); 
+        let matchedTeamFranchaiseeIds = team.filter(t => t.franchaisee_id == id)
+                                            .map(t => t.id);
+        let matchedEmployee = matchedTeamFranchaiseeIds.length ?
+                employee.filter(e => 
+                    matchedTeamFranchaiseeIds.includes(e.team_id)) : [];
+
+        let body: any = null;
+
+        if(matchedTeamFranchaiseeIds.length > 0){
+            let teamName = team.filter(t => t.id == matchedTeamFranchaiseeIds[0])
+                               .map(t => t.name)[0]
+            body = matchedEmployee.length ? 
+                    {"id": matchedTeamFranchaiseeIds[0], "name":teamName, "employees" : matchedEmployee} : 
+                    {"id": matchedTeamFranchaiseeIds[0], "name":teamName, "employees" : []}
+        }
+
+        return of(new HttpResponse({status: 200, body: body}));
+    }
 
     createEmployee(request: HttpRequest<any>) : Observable<HttpEvent<any>> {        
         let urlParts = request.url.split('/');
         let franchID = parseInt(urlParts[urlParts.length - 1]);        
         let newEmplID = Math.max(... employee.map(e => e.id)) + 1;
-        let newEmployee = {"id": newEmplID, "name" : request.body.name, "type" : request.body.type};
+        // find team id by franchaisee id
+        let matchedTeamFranchaiseeIds = 
+                        team.filter(t => t.franchaisee_id == franchID)
+                            .map(t => t.id);
+        let teamID = matchedTeamFranchaiseeIds.length ? matchedTeamFranchaiseeIds[0] : 1;
+        let newEmployee = {"id": newEmplID, "name" : request.body.name, "type" : request.body.type, "team_id" : teamID};
 
         if(franchID){
             employee.push(newEmployee);
-            employeeFranchaisee.push({"employee_id":newEmplID, "franchaisee_id":franchID})
+            //employeeFranchaisee.push({"employee_id":newEmplID, "franchaisee_id":franchID})
             console.log(`Added a new employee with ID ${newEmployee.id} into Franchaisee - ${franchID}`)
+        }
+
+        return of(new HttpResponse({status: 200, body:{}}));
+    }
+
+    createTeam(request: HttpRequest<any>) : Observable<HttpEvent<any>> {        
+        let urlParts = request.url.split('/');
+        let franchID = parseInt(urlParts[urlParts.length - 1]);        
+        let newTeamID = Math.max(... team.map(e => e.id)) + 1;
+        let newTeam = {"id": newTeamID, "name" : request.body.name, "franchaisee_id" : franchID};
+
+        if(franchID){
+            team.push(newTeam);
+            console.log(`Added a new team with ID ${newTeamID} into Franchaisee - ${franchID}`)
         }
 
         return of(new HttpResponse({status: 200, body:{}}));
@@ -107,18 +162,38 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.startsWith('/api/franchaisee/user/') 
                     && request.method === 'GET') {
                 return this.getFranchaiseeByUserID(request);
-            }       
+            }   
+            
+            // get franchaisee by user id
+            if (request.url.startsWith('/api/franchaisee/') 
+                    && request.method === 'GET') {
+                return this.getFranchaiseeByCriteria(request);
+            }   
             
             // get employees by franchaisee id
+            /*
             if (request.url.startsWith('/api/employee/franchaisee/') 
                     && request.method === 'GET') {
                 return this.getEmployeeByFranchaiseeID(request);
-            }            
+            } 
+            */           
  
+            // get team by franchaisee id
+            if (request.url.startsWith('/api/team/franchaisee/') 
+                    && request.method === 'GET') {
+                return this.getTeamByFranchaiseeID(request);
+            }            
+
             // create employee
             if (request.url.startsWith('/api/employee') 
                     && request.method === 'POST') {
                 return this.createEmployee(request);
+            }            
+
+            // create team
+            if (request.url.startsWith('/api/team') 
+                    && request.method === 'POST') {
+                return this.createTeam(request);
             }            
 
             // get users

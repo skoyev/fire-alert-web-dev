@@ -1,0 +1,24 @@
+<div class="row" style="padding: 25px;">
+    <div class="col-8">
+        <h3 style="text-align:center; margin-bottom: 30px;">
+            {{'FRANCHISEES_HEADER'|translate}}            
+        </h3>
+
+        <div *ngFor="let franchisee of franchisees | async; let i = index;" class="row line-space">
+            <div class="col-4">
+                <span>{{franchisee.name}}</span>                
+            </div>
+            <div class="col-4">
+                <a class="red" href="#" (click)="onEditFranchisee($event, franchisee)">{{'EDIT_LABEL'|translate}}</a>
+                <a style="margin-left: 20px;" class="red" href="#" (click)="onDeleteFranchisee($event, franchisee)">{{'DELETE_LABEL'|translate}}</a>
+            </div>
+        </div> 
+        
+        <div style="margin-top:25px;">
+            <button type="button" class="btn btn-outline-primary" (click)="onCreateNewFranchisee($event)" href="#">{{'CREATE_NEW_FRANCHISEE_LABEL'|translate}}</button> 
+        </div>
+            
+    </div>
+    <div class="col-4">         
+    </div>
+</div>

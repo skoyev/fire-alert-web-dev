@@ -71,5 +71,8 @@
   "CREATE_TEAM_LABEL": "NEW TEAM Fr",
   "CREATE_NEW_EMPLOYEE_LABEL": "New Employee Fr",
   "CREATE_LABEL": "Create Fr",
-  "CANCEL_LABEL": "Cancel Fr"
+  "CANCEL_LABEL": "Cancel Fr",
+  "DELETE_LABEL": "Delete Fr",
+  "FRANCHISEES_HEADER": "Franchisees Fr",
+  "CREATE_NEW_FRANCHISEE_LABEL": "NEW FRANCHISEE FR"
 }

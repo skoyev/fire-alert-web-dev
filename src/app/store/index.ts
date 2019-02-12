@@ -21,6 +21,8 @@ import { SearchEffects } from '@appStore/effects/search.effects';
 
 import { RouterStateUrl } from '@appStore/router';
 import { EmployeeEffects } from './effects/employee.effects';
+import { TeamEffects } from './effects/team.effects';
+import { FranchiseeEffects } from './effects/franchisee.effects';
 
 export interface State {
   employee: fromReducers.employee.State;
@@ -28,6 +30,7 @@ export interface State {
   search: fromReducers.search.State;
   user: fromReducers.user.State;
   team: fromReducers.team.State;
+  franchaisee: fromReducers.franchaisee.State,
   router: RouterReducerState<RouterStateUrl>;
 }
 
@@ -37,10 +40,11 @@ export const reducers: ActionReducerMap<State> = {
   search: fromReducers.search.reducer,
   user: fromReducers.user.reducer,
   team: fromReducers.team.reducer,
+  franchaisee: fromReducers.franchaisee.reducer,
   router: routerReducer
 };
 
-export const effects = [HeroEffects, SearchEffects, RouterEffects, EmployeeEffects];
+export const effects = [HeroEffects, SearchEffects, RouterEffects, EmployeeEffects, TeamEffects, FranchiseeEffects];
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [storeFreeze]

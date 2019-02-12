@@ -7,7 +7,7 @@
 
     <ul class="list-unstyled components" style="padding-left:20px;">
         <li *ngFor="let menuItem of menuItems1" [ngClass]="isActive(menuItem) ? 'active' : ''">
-            <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+            <a href="#" (click)="setActive($event,menuItem)">                    
                 {{(menuItem + '_LABEL').trim()|uppercase|translate}}
             </a>
         </li>
@@ -15,7 +15,7 @@
 
     <ul class="list-unstyled components" style="padding-left:20px;">
             <li *ngFor="let menuItem of menuItems2" [ngClass]="isActive(menuItem) ? 'active' : ''">
-                <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+                <a href="#" (click)="setActive($event, menuItem)">                    
                     {{(menuItem + '_LABEL').trim()|uppercase|translate}}
                 </a>
             </li>
@@ -23,106 +23,10 @@
 
     <ul class="list-unstyled components" style="padding-left:20px; border-bottom:none">
             <li *ngFor="let menuItem of menuItems3" [ngClass]="isActive(menuItem) ? 'active' : ''">
-                <a href="#" routerLink="/{{menuItem | lowercase}}" (click)="setActive(menuItem)">                    
+                <a href="#" (click)="setActive($event, menuItem)">                    
                     {{(menuItem + '_LABEL').trim()|uppercase|translate}}
                 </a>
             </li>
     </ul>
 
-    <!--li [ngClass]="isActive('Dashboard') ? 'active' : ''">
-                <a href="#" routerLink="/dashboard" (click)="setActive('Dashboard')">
-                    <i class="fas fa-home"></i>
-                    Dashboard
-                </a>
-        </li>
-        <li [ngClass]="isActive('Calls') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Calls')">
-              <i class="fas fa-home"></i>
-              Calls
-          </a>
-      </li>
-      <li [ngClass]="isActive('Leads') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Leads')">
-              <i class="fas fa-briefcase"></i>
-              Leads
-          </a>
-      </li>
-      <li [ngClass]="isActive('Work Orders') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Work Orders')">
-              <i class="fas fa-copy"></i>
-              Work Orders
-          </a>
-      </li>
-      <li [ngClass]="isActive('Jobs') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Jobs')">
-              <i class="fas fa-image"></i>
-              Jobs
-          </a>
-      </li>
-      <li [ngClass]="isActive('Customers') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Customers')">
-              <i class="fas fa-question"></i>
-              Customers
-          </a>
-      </li>
-      <li [ngClass]="isActive('Schedule') ? 'active' : ''">
-          <a href="#" routerLink="/dashboard" (click)="setActive('Schedule')">
-              <i class="fas fa-paper-plane"></i>
-              Schedule
-          </a>
-      </li>
-      <li [ngClass]="isActive('Invoices') ? 'active' : ''">
-        <a href="#" routerLink="/dashboard" (click)="setActive('Invoices')">
-            <i class="fas fa-paper-plane"></i>
-            Invoices
-        </a>
-      </li>
-      <li [ngClass]="isActive('Reports') ? 'active' : ''">
-        <a href="#" routerLink="/dashboard" (click)="setActive('Reports')">
-            <i class="fas fa-paper-plane"></i>
-            Reports
-        </a>
-      </li>
-    </ul>
-
-    <ul class="list-unstyled components">
-       <li>
-        <a href="#" routerLink="/dashboard">
-            <i class="fas fa-paper-plane"></i>
-            News
-        </a>
-       </li>            
-       <li>
-         <a href="#" routerLink="/dashboard">
-            <i class="fas fa-paper-plane"></i>
-            Tools
-         </a>
-        </li>            
-        <li>
-            <a href="#" routerLink="/dashboard">
-                <i class="fas fa-paper-plane"></i>
-                Directory
-            </a>
-        </li>            
-     </ul>
-     <ul class="list-unstyled components">
-            <li>
-             <a href="#" routerLink="/dashboard"> 
-                 <i class="fas fa-paper-plane"></i>
-                 Franchisees
-             </a>
-            </li>            
-            <li>
-              <a href="#" routerLink="/dashboard">
-                 <i class="fas fa-paper-plane"></i>
-                 Users
-              </a>
-             </li>            
-             <li>
-                 <a href="#" routerLink="/dashboard">
-                     <i class="fas fa-paper-plane"></i>
-                     Directory
-                 </a>
-             </li-->           
-         
 </nav>

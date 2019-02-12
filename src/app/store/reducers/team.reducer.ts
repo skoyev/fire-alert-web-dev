@@ -6,11 +6,20 @@ import {
 import { Team } from '@appModels/team';
 
 export interface State {
-    team: Team;  
+    team: Team; 
+    showNewTeamModal: boolean; 
+    closeNewTeamModal: boolean;
+    createTeamSuccess: boolean;
+    teamDetectChanges: boolean;
+
 }
 
 export const initialState: State = {
-    team: null
+    team: null,
+    showNewTeamModal: false, 
+    closeNewTeamModal: false,
+    createTeamSuccess: false,
+    teamDetectChanges: false
 };
 
 export function reducer(state = initialState, action: TeamActions): State {
@@ -19,7 +28,31 @@ export function reducer(state = initialState, action: TeamActions): State {
       return {
         ...state,
         team: action.payload
-      };
+    };
+
+    case TeamActionTypes.ShowNewTeam:
+      return {
+        ...state,
+        showNewTeamModal: action.payload
+    };
+
+    case TeamActionTypes.CreateTeamSuccess:
+      return {
+        ...state,
+        createTeamSuccess: action.payload
+    };
+
+    case TeamActionTypes.TeamDetectChanges:
+      return {
+        ...state,
+        teamDetectChanges: action.payload
+    };
+
+    case TeamActionTypes.CloseNewTeamModal:
+      return {
+        ...state,
+        closeNewTeamModal: action.payload
+    };
 
     default:
       return state;

@@ -11,11 +11,13 @@ import { Profile } from '@appModels/profile';
 import { Employee } from '@appModels/employee';
 import { Franchaisee } from '@appModels/franchaisee';
 import { EMPLOYEE, FRANCHAISOR } from '@appModels/constant';
+import { Team } from '@appModels/team';
 
 @Injectable()
 export class DashboardService {
   private dashboardUrl:string = '/api/profile';
   private employeeUrl:string = '/api/employee';
+  private teamUrl:string = '/api/team';
   
   private dashboardSubscription = new Subject<boolean>();
 
@@ -76,6 +78,10 @@ export class DashboardService {
     return this.http.post<Employee>(`${this.employeeUrl}/${frID}`, employee).pipe();
   }
 
+  addTeam (frID:number, team: Team): Observable<Team> {
+    return this.http.post<Team>(`${this.teamUrl}/${frID}`, team).pipe();
+  }
+
   fetchProfile(credential:Credentials) : Observable<Profile> {
     if(!credential) {
       return of(null);
@@ -86,8 +92,9 @@ export class DashboardService {
       catchError(() => of(null)));    
   }
 
-  fetchEmployeesByFranchaisee(frID:number) : Observable<Employee[]> {    
-    return this.http.get<Employee[]>(`${this.employeeUrl}/franchaisee/${frID}`);      
+  fetchTeamWithEmployeesByFranchaisee(frID:number) : Observable<Team> {    
+    //return this.http.get<Employee[]>(`${this.employeeUrl}/franchaisee/${frID}`);      
+    return this.http.get<Team>(`${this.teamUrl}/franchaisee/${frID}`);      
   }
 
   findFranchaiseeByUserID(userID:number):Observable<Franchaisee> {

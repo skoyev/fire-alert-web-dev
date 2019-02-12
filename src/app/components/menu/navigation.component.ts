@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
@@ -7,6 +7,7 @@ import { I18nService } from '../../core/i18n.service';
 import { TranslateService} from '@ngx-translate/core';
 import { DashboardService } from '@appServices/dashboard.service';
 import { Subscription } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'dashboard-menu-fire-alert',
@@ -20,6 +21,7 @@ export class NavigationComponent implements OnDestroy {
   @Input() menuItems1: string[];
   @Input() menuItems2: string[];
   @Input() menuItems3: string[];
+  @Output() menu = new EventEmitter<any>();
 
   constructor(
     private router: Router,
@@ -43,8 +45,11 @@ export class NavigationComponent implements OnDestroy {
     this.i18nService.language = language;
   }
 
-  setActive(elem:string){
+  setActive(event:any, elem:string){
+    event.preventDefault();
+    event.stopPropagation(); 
     this.activeEl = elem.toLowerCase();
+    this.menu.emit(this.activeEl);
   }
 
   isActive(elem: string): boolean{

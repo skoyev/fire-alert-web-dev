@@ -20,6 +20,8 @@ import { TeamModal } from '@appComponents/modal/team/team.modal.component';
 import * as fromStore from '@appStore/index';
 import { of } from 'rxjs';
 import { EmployeeDetectChanges } from '@appStore/actions/employee.actions';
+import { Team } from '@appModels/team';
+import { ProfileComponentNew } from '@appComponents/profile/profile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,18 +31,22 @@ import { EmployeeDetectChanges } from '@appStore/actions/employee.actions';
 })
 export class DashboardComponent implements OnInit {
   profile:Profile;
-  employees:Employee[];
+  //employees:Employee[];
   codes:string[];
   menuItems1:string[];
   menuItems2:string[];
   menuItems3:string[];
   showAboutMe:boolean;
+  team:Team;
+  currentComponentName:string;
+  dashboardComponents:Array<any>;
 
   topHeroes$: Observable<Hero[]>; 
   private showSidebar: boolean = false;
   private showProfile: boolean = false;
   private showAboutMyBusiness: boolean = false;
   private employeeModal:NgbActiveModal;
+  private teamModal:NgbActiveModal;
 
   constructor(private store: Store<fromReducers.hero.State>,
               private globalStore: Store<fromStore.State>,
@@ -51,11 +57,14 @@ export class DashboardComponent implements OnInit {
               private dashboardService: DashboardService) {}
 
   ngOnInit() {
-    //this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));
+    this.dashboardComponents = [ProfileComponentNew]
+    //this.topHeroes$ = this.store.pipe(select(fromSelectors.getTopHeroes));    
     
     this.store.select(fromSelectors.getShowProfile)        
+        .pipe(filter(r => r))
         .subscribe(r => {
           this.showProfile = r;          
+          this.currentComponentName = 'profile'
     });
 
     // Create New Employee
@@ -76,12 +85,19 @@ export class DashboardComponent implements OnInit {
 
     // Create New Team
     this.teamStore
-        .select(fromSelectors.getCreateTeam)
-        .pipe(filter(t => t != null))
-        .subscribe(t => {
-          const modalRef = this.modalService.open(TeamModal);
-          modalRef.componentInstance.name = 'World Test';          
-        });
+        .select(fromSelectors.getShowNewTeamModal)
+        .pipe(filter(e => e))
+        .subscribe(_ => this.teamModal = this.modalService.open(TeamModal));
+
+    this.teamStore        
+        .select(fromSelectors.getCloseNewTeamModal)
+        .pipe(filter(e => e))
+        .subscribe(_ => {
+          if(this.teamModal){
+            this.teamModal.close()
+          }
+    });
+
     /*
     this.store.select(fromSelectors.getSearchStore)
         .pipe(filter(r => r != null))
@@ -96,6 +112,7 @@ export class DashboardComponent implements OnInit {
         .getMenuItems("dashboard-menu1")
         .subscribe((items:string[]) => {
           this.menuItems1 = items;
+          this.currentComponentName = items[0].toLocaleLowerCase();
     });
 
     this.dashboardService
@@ -118,35 +135,41 @@ export class DashboardComponent implements OnInit {
 
     // load employee per franchaisee
     if(this.showAboutMe) {
-      this.loadEmployees();
+      this.loadTeamWithEmployees();
 
       this.globalStore
           .select(fromSelectors.getCreateEmployeeSuccess)
           .pipe(filter(t => t))
           .subscribe(_ => {
-            this.loadEmployees();
+            this.loadTeamWithEmployees();
+          });
+      
+      this.globalStore
+          .select(fromSelectors.getCreateTeamStoreSuccess)
+          .pipe(filter(t => t))
+          .subscribe(_ => {
+            this.loadTeamWithEmployees();
           });
     }
 
     this.showAboutMyBusiness = !this.dashboardService.isEmployee();
   }
 
-  loadEmployees() {
+  onMenu (item:string) {
+    console.log(item);
+    this.currentComponentName = item.toLowerCase();
+  }
+
+  loadTeamWithEmployees() {
     this.dashboardService
         .findFranchaiseeByUserID(this.authService.credentials.id)
         .pipe(filter(d => d != null))
         .subscribe((fr:Franchaisee) => {
-           /*          
-           this.employees = this.dashboardService
-                                .fetchEmployeesByFranchaisee(fr.id)
-                                .pipe(delay(5000), tap())
-            */
-          
           this.dashboardService
-              .fetchEmployeesByFranchaisee(fr.id)
-              .pipe(filter(r => r && r.length > 0 ))
-              .subscribe(empls => {
-                this.employees = [...empls]
+              .fetchTeamWithEmployeesByFranchaisee(fr.id)
+              .pipe(filter(t => t != null))
+              .subscribe(t => {
+                this.team = new Team(t.id, t.name, [...t.employees]);
                 this.emplStore.dispatch(new EmployeeDetectChanges(true))
               });                                  
     });
@@ -155,5 +178,9 @@ export class DashboardComponent implements OnInit {
   toggleSidebar(){
     this.showSidebar = !this.showSidebar;
     this.dashboardService.setShouldSwowDashboard(this.showSidebar);
+  }
+
+  getContent():Component {
+    return new Component(null);
   }
 }

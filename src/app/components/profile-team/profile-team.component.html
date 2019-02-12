@@ -2,20 +2,23 @@
     <div class="col-6">
         <h3 class="red team">{{'TEAM_LABEL'|translate}} 
             <!--a class="create-team" (click)="onCreateNewTeam($event)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</a-->            
-            <button style="margin-left:25px;" type="button" class="btn btn-outline-primary" (click)="onCreateNewTeam($event)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</button> 
+            <button *ngIf="team == null" style="margin-left:25px;" type="button" class="btn btn-outline-primary" (click)="onCreateNewTeam($event)" href="#">{{'CREATE_NEW_TEAM_LABEL'|translate}}</button> 
         </h3>
-        <div *ngFor="let employee of employees; trackBy: id; let i = index;" class="row line-space">            
-            <div class="col-4">
-                <span>{{employee.name}}</span>                
-            </div>
-            <div class="col-4">
-                <span>{{employee.type}}</span>
-            </div>
-            <div class="col-4">
-                <a class="red" href="#" (click)="onEditEmployee($event, employee)">{{'EDIT_LABEL'|translate}}</a>
+        <div *ngIf="team">
+            <div  *ngFor="let employee of team.employees; trackBy: id; let i = index;" class="row line-space">            
+                <div class="col-4">
+                    <span>{{employee.name}}</span>                
+                </div>
+                <div class="col-4">
+                    <span>{{employee.type}}</span>
+                </div>
+                <div class="col-4">
+                    <a class="red" href="#" (click)="onEditEmployee($event, employee)">{{'EDIT_LABEL'|translate}}</a>
+                    <a style="margin-left: 20px;" class="red" href="#" (click)="onDeleteEmployee($event, employee)">{{'DELETE_LABEL'|translate}}</a>
+                </div>
             </div>
         </div>
-        <div style="margin-top:25px;">
+        <div *ngIf="team" style="margin-top:25px;">
             <button type="button" class="btn btn-outline-primary" (click)="onCreateNewEmployee($event)" href="#">{{'CREATE_NEW_EMPLOYEE_LABEL'|translate}}</button> 
         </div>
     </div>

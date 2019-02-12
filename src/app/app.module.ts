@@ -48,6 +48,7 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { ComponentsModule } from '@appComponents/components.module';
 import { ProfileComponentNew } from '@appComponents/profile/profile.component';
 import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
+import { FranchaiseeService } from '@appServices/franchaisee.service';
 
 @NgModule({
   imports: [
@@ -97,6 +98,7 @@ import { fakeBackendProvider } from '@appServices/FakeBackendInterceptor';
   ],
   providers: [
     DashboardService,
+    FranchaiseeService,
     HeroService,
     MessageService,
     I18nService,

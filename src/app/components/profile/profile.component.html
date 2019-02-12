@@ -38,9 +38,11 @@
         </ul>     
     </div>
     <div style="width: 100%">
-        <app-profile-personal-cmp [profile]="profile" *ngIf="showAboutMe && shouldShowProfile"></app-profile-personal-cmp>
+        <app-profile-personal-cmp [profile]="profile" 
+                                  *ngIf="showAboutMe && shouldShowProfile">
+        </app-profile-personal-cmp>
         <app-profile-business-cmp [profile]="profile" 
-                                  [employees]="employees" 
+                                  [team]="team" 
                                   [codes]="codes"
                                   [showAboutMe]="showAboutMe"                                   
                                   *ngIf="!shouldShowProfile">

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { switchMap, map, catchError, tap, debounceTime } from 'rxjs/operators';
+import { switchMap, map, catchError, tap, debounceTime, throttle } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { CreateEmployee, EmployeeActionTypes, CreateEmployeeSuccess, EmployeeError} from '@appStore/actions/employee.actions';
@@ -23,20 +23,10 @@ export class EmployeeEffects {
     @Effect()
     addEmployee$ = this.actions$.pipe(
       ofType(EmployeeActionTypes.CreateEmployee),
-      switchMap((action: CreateEmployee) =>                
+      switchMap((action: CreateEmployee) =>        
         this.dashService
             .addEmployee(action.frID, action.payload)
             .pipe(map(_ => new CreateEmployeeSuccess(true)),
                   catchError(error => of(new EmployeeError(error))        
-
-        /*
-        this.dashService
-            .findFranchaiseeByUserID(this.authService.credentials.id)            
-            .subscribe((f:Franchaisee) => 
-              this.dashService
-                  .addEmployee(f.id, action.payload)
-                  .pipe(map(_ => new CreateEmployeeSuccess(true)),
-                  catchError(error => of(new EmployeeError(error)              
-        */
     ))));
 }
