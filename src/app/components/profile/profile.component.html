@@ -1,6 +1,30 @@
-<div class="row" style="padding-left: 50px;">
-    <div class="col-8">
-        <div class="row" *ngIf="profile">
+<div>
+    <!-- Profile Header -->
+    <div class="row">        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%" [ngClass]="{'expand-item': showProfile}">
+            <div class="container-fluid">
+                <div style="width: 100%">
+                    <img src='assets/images/family.jpeg' style="width: 100%; height: 200px;">
+                </div>                
+
+                <button style="display:none;" type="button" id="sidebarCollapse" class="btn btn-info" (click)="toggleSidebar()">
+                    <i class="fas fa-align-left"></i>                            
+                </button>    
+    
+                <button style="display:none;" class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+    
+                <div class="collapse navbar-collapse" style="display:none;" id="navbarSupportedContent">
+                </div>
+            </div>
+        </nav>          
+    </div>
+
+    <!-- Profile Content -->    
+    <div class="row" style="padding-left: 50px;">
+        <div class="col-8">
+            <div class="row" *ngIf="profile">
                 <div class="col-2">
                     <img src='assets/images/face.jpeg' width="100px">
                 </div>
@@ -19,33 +43,35 @@
                         </span>                        
                     </div>
                 </div>        
+            </div>
+        </div>
+        <div class="col-4">   
+            <ul>
+                <li *ngIf="showAboutMe">
+                    <a [ngClass]="{selected: shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, true)">
+                            <i class="fas fa-th-list"></i>
+                            {{'ABOUT_ME_LABEL'|translate}}
+                    </a>            
+                </li>
+                <li *ngIf="showAboutMyBusiness">
+                    <a [ngClass]="{selected: !shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, false)">
+                            <i class="fas fa-copy"></i>
+                            {{'ABOUT_MY_BUSINESS_LABEL'|translate}}
+                    </a>            
+                </li>
+            </ul>     
+        </div>
+        <div style="width: 100%">
+            <app-profile-personal-cmp [profile]="profile" 
+                                    *ngIf="showAboutMe && shouldShowProfile">
+            </app-profile-personal-cmp>
+            <app-profile-business-cmp [profile]="profile" 
+                                    [team]="team" 
+                                    [codes]="codes"
+                                    [showAboutMe]="showAboutMe"                                   
+                                    *ngIf="!shouldShowProfile">
+            </app-profile-business-cmp>
         </div>
     </div>
-    <div class="col-4">   
-        <ul>
-            <li *ngIf="showAboutMe">
-                <a [ngClass]="{selected: shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, true)">
-                        <i class="fas fa-th-list"></i>
-                        {{'ABOUT_ME_LABEL'|translate}}
-                </a>            
-            </li>
-            <li *ngIf="showAboutMyBusiness">
-                <a [ngClass]="{selected: !shouldShowProfile}" class="nav-link" href="#" (click)="showPersonalProfile($event, false)">
-                        <i class="fas fa-copy"></i>
-                        {{'ABOUT_MY_BUSINESS_LABEL'|translate}}
-                </a>            
-            </li>
-        </ul>     
-    </div>
-    <div style="width: 100%">
-        <app-profile-personal-cmp [profile]="profile" 
-                                  *ngIf="showAboutMe && shouldShowProfile">
-        </app-profile-personal-cmp>
-        <app-profile-business-cmp [profile]="profile" 
-                                  [team]="team" 
-                                  [codes]="codes"
-                                  [showAboutMe]="showAboutMe"                                   
-                                  *ngIf="!shouldShowProfile">
-        </app-profile-business-cmp>
-    </div>
 </div>
+
