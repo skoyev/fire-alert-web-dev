@@ -25,6 +25,7 @@ export class ProfileComponentNew implements OnInit {
   @Input() codes:string[];
   @Input() showAboutMe:boolean;
   @Input() showAboutMyBusiness:boolean;
+  showProfile: boolean = false;
 
   shouldShowProfile:boolean = true;
 
@@ -38,4 +39,6 @@ export class ProfileComponentNew implements OnInit {
 
     this.shouldShowProfile = shouldShowProfile;
   }
+
+  toggleSidebar() {}
 }

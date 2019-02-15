@@ -13,12 +13,11 @@
 
     <!-- Profile Right Section -->
     <div *ngSwitchCase="'profile'">
-        <app-profile-cmp *ngIf="showProfile" 
-                        [codes]="codes"
-                        [profile]="profile" 
-                        [team]="team"                       
-                        [showAboutMyBusiness]="showAboutMyBusiness"
-                        [showAboutMe]="showAboutMe">
+        <app-profile-cmp [codes]="codes"
+                         [profile]="profile" 
+                         [team]="team"                       
+                         [showAboutMyBusiness]="showAboutMyBusiness"
+                         [showAboutMe]="showAboutMe">
         </app-profile-cmp>
     </div>
 

@@ -35,11 +35,14 @@ export class EmployeeModal implements OnInit {
       Validators.minLength(4)
     ]),
   });
+  activeModal: NgbActiveModal;
 
   constructor(private store: Store<fromStore.State>,
               private dashService: DashboardService,
               private authService: AuthenticationService,              
-              private activeModal: NgbActiveModal) {}
+              activeModal: NgbActiveModal) {
+    this.activeModal = activeModal;
+  }
 
   ngOnInit() {
     this.store.dispatch(new ShowNewEmployeeModal(false));

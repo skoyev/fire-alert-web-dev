@@ -42,8 +42,7 @@ export class DashboardComponent implements OnInit {
   dashboardComponents:Array<any>;
 
   topHeroes$: Observable<Hero[]>; 
-  private showSidebar: boolean = false;
-  private showProfile: boolean = false;
+  private showSidebar: boolean = false;  
   private showAboutMyBusiness: boolean = false;
   private employeeModal:NgbActiveModal;
   private teamModal:NgbActiveModal;
@@ -63,7 +62,7 @@ export class DashboardComponent implements OnInit {
     this.store.select(fromSelectors.getShowProfile)        
         .pipe(filter(r => r))
         .subscribe(r => {
-          this.showProfile = r;          
+          //this.showProfile = r;          
           this.currentComponentName = 'profile'
     });
 
