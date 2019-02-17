@@ -79,9 +79,11 @@ import { FranchaiseeService } from '@appServices/franchaisee.service';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
+    /*
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false
     })
+    */
   ],
   declarations: [
     AppComponent,
@@ -103,7 +105,7 @@ import { FranchaiseeService } from '@appServices/franchaisee.service';
     MessageService,
     I18nService,
     // provider used to create fake backend for non prod env.
-    !environment.production ? fakeBackendProvider : [],
+    //!environment.production ? fakeBackendProvider : [],
     NgbModule      
   ],
   bootstrap: [AppComponent]

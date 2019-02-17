@@ -10,7 +10,7 @@ module.exports = {
         username: 'postgres',
         host:     'localhost',
         dbname:   'postgres',
-        password: 'love',
+        password: 'postgres',
         port:      5432
       },
       cache:{

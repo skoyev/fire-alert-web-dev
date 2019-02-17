@@ -6,5 +6,6 @@ userService.init();
 
 //router.use(uAccGetService.isAuthenticated);
 router.get('/', userService.findUsers);
+router.post('/auth', userService.login);
 
 module.exports = router;

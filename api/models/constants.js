@@ -18,5 +18,6 @@ module.exports = {
   DeletePreferenceQuery      : 'DELETE FROM USER_PREFERENCE WHERE id = $1',
   UpdateUserPreferenceQuery  : 'UPDATE USER_PREFERENCE SET content = $1 WHERE app_name = $2 and account_id = $3',
   FetchAllHistoryEntriesQuery: 'SELECT id, content, history_class, key, time_stamp, useraccount_id_oid FROM history_entry WHERE history_class = $1 AND useraccount_id_oid = $2',
-  FetchAllUsers:               'SELECT id, first_name, last_name FROM users'
+  FetchAllUsers:               'SELECT user_id, username FROM users',
+  LoginUserNamePassword :      'SELECT user_id as id, username, firstname as firstName, lastname as lastName from users where username = $1 and password = $2'
 };

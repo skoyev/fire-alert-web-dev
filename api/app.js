@@ -13,6 +13,7 @@ const port = config.app.port;
 
 global.config = config;
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -36,7 +37,7 @@ var user = require('./routes/user');
 //var account    = require('./routes/account');
 
 // set up routers
-app.use('/api/user', user);
+app.use('/api/users', user);
 
 let server = app.listen(port, 'localhost', function (err) {
     if (err) {
