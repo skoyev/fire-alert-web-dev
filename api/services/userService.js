@@ -30,13 +30,25 @@ let UserService = (function(config){
         pool.query(constants.LoginUserNamePassword, [username, password])
             .then(rs => {
               console.log(`Size ${rs.rows.length}`)
-              if(rs.rows.length < 2) {
-                const userResponse = new (require('../models/userResponse'))
-                                        (constants.Success, rs.rows[0]);      
-                response.status(200).json(userResponse);              
+              if(rs.rows.length == 1) {
+                let user = rs.rows[0]
+                console.log(user)
+                pool.query(constants.FindUserQuery, [user.id])
+                    .then(rs => {
+                      if(rs.rows.length == 1) {
+                        user.roles = rs.rows;                        
+                        const userResponse = new (require('../models/userResponse'))
+                                            (constants.Success, user);      
+                        response.status(200).json(userResponse);              
+                      } else {
+                        response.status(500)
+                                .json(new (require('../models/userResponse'))
+                                     (constants.Fail, 'User Role Error'));
+                      }
+                    })
               } else {
                 const userResponse = new (require('../models/userResponse'))
-                                      (constants.Fail, '', 'More then 1 profile has been found for this user...');      
+                                      (constants.Fail, '', 'More then 1 or not found profile has been found for this user...');      
                 response.status(200).json(userResponse);              
               }
             })

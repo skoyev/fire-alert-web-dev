@@ -50,15 +50,17 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(
-        credentials => {          
-          if(this.authenticationService.credentials) {
-            //log.debug(`${credentials.username} successfully logged in`);
+        credentials => { 
+          this.error = '';         
+          if(this.authenticationService.credentials &&
+              this.authenticationService.credentials.roles) {
             this.route.queryParams.subscribe(params =>
               this.router.navigate([params.redirect || '/dashboard'], { replaceUrl: true })
             );
           } else {
             console.log('Login Error');
             this.loginForm.markAsPristine();
+            this.error = 'Login Error'
           }
           this.isLoading = false;
         },

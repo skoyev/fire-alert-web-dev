@@ -22,7 +22,7 @@ export class HeroesComponent implements OnInit {
   constructor(private store: Store<fromReducer.hero.State>) {}
 
   ngOnInit() {
-    this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
+    //this.heroes$ = this.store.pipe(select(fromSelectors.getHeroes));
   }
 
   add(name: string): void {

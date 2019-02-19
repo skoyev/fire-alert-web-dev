@@ -22,11 +22,14 @@ export class HeroService {
 
   /** GET heroes from the server */
   getHeroes (): Observable<Hero[]> {
+    
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(heroes => this.log(`fetched heroes`)),
         catchError(this.handleError('getHeroes', []))
       );
+      
+     //return of(new Observable<Hero[]>);
   }
 
   /** GET hero by id. Return `undefined` when id not found */

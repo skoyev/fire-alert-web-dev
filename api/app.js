@@ -33,11 +33,16 @@ let container = new nodeDI.ContainerBuilder();
 global.diContainer = container;
 
 // define routers
-var user = require('./routes/user');
-//var account    = require('./routes/account');
+var user    = require('./routes/user');
+var profile = require('./routes/profile');
+var team    = require('./routes/team');
+var franchaisee = require('./routes/franchaisee');
 
 // set up routers
 app.use('/api/users', user);
+app.use('/api/profile', profile);
+app.use('/api/team', team);
+app.use('/api/franchaisee', franchaisee);
 
 let server = app.listen(port, 'localhost', function (err) {
     if (err) {
