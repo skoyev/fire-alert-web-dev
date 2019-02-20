@@ -75,11 +75,11 @@ export class DashboardService {
   }
   
   addEmployee (frID:number, employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(`${this.employeeUrl}/${frID}`, employee).pipe();
+    return this.http.post<Employee>(`${this.employeeUrl}?franchaisee_id=${frID}`, employee).pipe();
   }
 
   addTeam (frID:number, team: Team): Observable<Team> {
-    return this.http.post<Team>(`${this.teamUrl}/${frID}`, team).pipe();
+    return this.http.post<Team>(`${this.teamUrl}?franchaisee_id=${frID}`, team).pipe();
   }
 
   fetchProfile(credential:Credentials) : Observable<Profile> {

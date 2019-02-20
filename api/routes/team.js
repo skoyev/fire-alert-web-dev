@@ -6,6 +6,6 @@ teamService.init();
 
 //router.use(uAccGetService.isAuthenticated);
 router.get('/*', teamService.findTeam);
-//router.post('/auth', userService.login);
+router.post('/', teamService.createTeam);
 
 module.exports = router;

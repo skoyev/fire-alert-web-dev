@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build --prod",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy/conf.default.json --port 3000",
     "start_new": "npm run env -s && ng serve --aot",
     "test": "jest",
     "test:watch": "jest --watch",

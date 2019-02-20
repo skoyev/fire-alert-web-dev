@@ -25,5 +25,9 @@ module.exports = {
   FetchFranchaiseeByUserIDQuery : 'SELECT id, name from franchaisee where id in (select franchaisee_id as id from franchaisee_user WHERE user_id = $1)',
   FetchTeamByUserIDQuery:         'select id, name from team where franchaisee_id in (select franchaisee_id as id from franchaisee_user WHERE user_id = $1)',
   FetchTeamByFranchaiseeIDQuery:  'select id, name from team where franchaisee_id = $1',
-  FetchTeamQuery : 'SELECT id, name from team'
+  FetchTeamQuery :                'SELECT id, name from team',
+  FetchEmployeesByTeamIDQuery :   'SELECT id, name, type from employee where team_id = $1',
+  NewTeamQuery                :   'INSERT INTO team(name, franchaisee_id) values($1, $2)',
+  NewEmployeeQuery            :   'INSERT INTO employee(name, type, team_id) VALUES ($1, $2, (SELECT id FROM team WHERE franchaisee_id = $3))',
+  FindTeamQuery               :   'SELECT id FROM team WHERE name = $1 AND franchaisee_id = $2'
 };

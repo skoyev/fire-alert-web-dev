@@ -1,9 +1,9 @@
 "user strict";
 
 /**
- * TeamService Enpoint Class
+ * EmployeeService Enpoint Class
  */
-let TeamService = (function(config){
+let EmployeeService = (function(config){
   let client;
 
   const init = () => {
@@ -19,28 +19,23 @@ let TeamService = (function(config){
   }
 
   /**
-   * Create Team
+   * Create Employee
    * @param {*} req 
    * @param {*} res 
    */
-  const createTeam = async(req, res) => {
+  const createEmployee = async(req, res) => {
     try {
-      const {name} = req.body;  
-      const {franchaisee_id} = req.query
-      if(name && franchaisee_id){
-        let existTeam = await checkIfExistTeam(name, franchaisee_id);
-        if(!existTeam){
-          console.log('Creating a new team...');
-          pool.query(constants.NewTeamQuery, [name, franchaisee_id])
-              .then(rs => {
-                res.status(200)
-                   .json(new (require('../models/response'))(constants.Success));    
-              }
-          );  
-        } else {
-          res.status(500)
-            .json(new (require('../models/response'))(constants.Fail, `Team already exist for the Franchaisee ID: ${franchaisee_id}`));    
-        }
+      const {name, type} = req.body;
+      const {franchaisee_id}    = req.query;
+
+      if(name && type && franchaisee_id) {
+        console.log('Creating a new employee...');
+        pool.query(constants.NewEmployeeQuery, [name, type, franchaisee_id])
+            .then(rs => {
+              res.status(200)
+                 .json(new (require('../models/response'))(constants.Success));    
+            }
+        );
       } else {
         res.status(200)
           .json(new (require('../models/response'))(constants.Fail, 'Not enough params provided'));
@@ -52,23 +47,18 @@ let TeamService = (function(config){
     }
   }
 
-  const checkIfExistTeam = async(name, franchaisee_id) => {
-    const result = await pool.query(constants.FindTeamQuery, [name, franchaisee_id]);
-    return result.rows.length > 0;
-  }
-
   /**
-   * Find team
+   * Find employee
    */
-  const findTeam = async (req, res) => {    
+  const findEmployeeByID = async (req, res) => {    
     try { 
       let urlParts = req.url.split('/');
-      let searchByFranchaiseeID = urlParts.includes('franchaisee');
+      /*
       let id = urlParts.length > 0 ? parseInt(urlParts[urlParts.length - 1]) : null;
-      let query = constants.FetchTeamQuery;
+      let query = constants.FetchEmployeeByIDQuery;
       let params = [];
 
-      if(searchByFranchaiseeID && id) {
+      if(id) {
           query  = constants.FetchTeamByFranchaiseeIDQuery;
           params = [id]
       }
@@ -84,9 +74,10 @@ let TeamService = (function(config){
                         }
                     );          
                 } else {
-                    throw new Error(`More then 1 or Not Found team has been found for the frId ${id}`)
+                    throw new Error(`More then 1 team has been found for the id ${id}`)
                 }
-          }).catch(e => res.status(500).json(e.message))
+          }).catch(e => console.error(e.stack))
+          */
     } catch (ex) {
       res.status(500)
          .json(new (require('../models/response'))
@@ -95,13 +86,13 @@ let TeamService = (function(config){
   }
 
   return {
-    findTeam : findTeam,
-    createTeam : createTeam,
+    findEmployeeByID : findEmployeeByID,
+    createEmployee : createEmployee,
     init     : init
   };
 
 })(config);
 
-exports.findTeam = TeamService.findTeam;
-exports.createTeam = TeamService.createTeam;
-exports.init     = TeamService.init;
+exports.findEmployeeByID   = EmployeeService.findEmployeeByID;
+exports.createEmployee = EmployeeService.createEmployee;
+exports.init           = EmployeeService.init;

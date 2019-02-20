@@ -24,6 +24,11 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Cache-Control', 'no-cache');
+
+    //const uAccGetService  = require('../services/common/userAccountGetterService');
+    //router.use(uAccGetService.isAuthenticated);
+
+    console.log('Middleware handling URL - ' + req.url)
   
     next();
 });
@@ -33,16 +38,18 @@ let container = new nodeDI.ContainerBuilder();
 global.diContainer = container;
 
 // define routers
-var user    = require('./routes/user');
-var profile = require('./routes/profile');
-var team    = require('./routes/team');
-var franchaisee = require('./routes/franchaisee');
+let user    = require('./routes/user');
+let profile = require('./routes/profile');
+let team    = require('./routes/team');
+let franchaisee = require('./routes/franchaisee');
+let employee = require('./routes/employee');
 
 // set up routers
 app.use('/api/users', user);
 app.use('/api/profile', profile);
 app.use('/api/team', team);
 app.use('/api/franchaisee', franchaisee);
+app.use('/api/employee', employee);
 
 let server = app.listen(port, 'localhost', function (err) {
     if (err) {
